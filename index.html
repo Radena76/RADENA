@@ -141,7 +141,6 @@ function enableClientColumnResize(){
 }
 function applyClientColumnWidth(){const saved=localStorage.getItem('RADENA_CLIENT_COL_WIDTH');if(saved)document.documentElement.style.setProperty('--client-col-width',saved+'px');setTimeout(enableClientColumnResize,0)}
 function init(){dueDate.value=today();payDate.value=today();repFrom.value='2026-03-01';repTo.value='2026-07-31';refresh()}init();
-</script></body></html>
 window.checkLogin = function () {
     const pass = document.getElementById("passInput").value;
 
@@ -153,13 +152,13 @@ window.checkLogin = function () {
 };
 
 document.addEventListener("keydown", function(e) {
-    if (e.key === "Enter" && document.getElementById("loginScreen").style.display !== "none") {
+    const login = document.getElementById("loginScreen");
+    if (e.key === "Enter" && login && login.style.display !== "none") {
         window.checkLogin();
     }
 });
-<script>
-  const password = prompt("Въведете парола:");
-  if (password !== "131276") {
-    document.body.innerHTML = "Грешна парола!";
-  }
+
+init();
 </script>
+</body>
+</html>
