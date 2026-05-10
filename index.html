@@ -11,14 +11,7 @@ th.client-col .resizer{position:absolute;right:0;top:0;width:8px;height:100%;cur
 th.client-col .resizer:hover{background:#93c5fd}
 .importBox{background:#eef6ff;border:1px solid #bfdbfe;border-radius:14px;padding:12px;margin:12px 0;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .importBox b{color:#111827}
-</style></head><body><div id="loginScreen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#111827;display:flex;align-items:center;justify-content:center;z-index:99999;">
-  <div style="background:white;padding:30px;border-radius:14px;text-align:center;width:320px;box-shadow:0 20px 50px rgba(0,0,0,.35);">
-    <h2 style="margin-top:0;color:#111827;">Вход в RADENA</h2>
-    <input id="passInput" type="password" placeholder="Парола" style="box-sizing:border-box;width:100%;padding:12px;margin:10px 0;border:1px solid #cfd8e3;border-radius:10px;">
-    <button onclick="if(document.getElementById('passInput').value==='131276'){document.getElementById('loginScreen').remove();}else{document.getElementById('loginError').innerText='Грешна парола!';document.getElementById('passInput').value='';document.getElementById('passInput').focus();}" style="width:100%;padding:12px;background:#2563eb;color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;">Вход</button>
-    <div id="loginError" style="color:red;margin-top:12px;font-weight:700;"></div>
-  </div>
-</div><header><h1>RADENA WEB V3</h1><div>Клиенти + начисления + плащания + салда</div></header><div class="wrap"><div class="importBox"><b>Импорт плащания от Excel/CSV:</b><input type="file" id="importFile" accept=".csv"><button onclick="importPayments()">Импорт плащания</button><span class="muted">CSV UTF-8 с колони: име клиент, номер док, дата док., рег.номер, описание на операцията, ст-ст, основание, МОЛ-2, начин на плащане</span></div></div><div class="wrap">
+</style></head><body><header><h1>RADENA WEB V3</h1><div>Клиенти + начисления + плащания + салда</div></header><div class="wrap"><div class="importBox"><b>Импорт плащания от Excel/CSV:</b><input type="file" id="importFile" accept=".csv"><button onclick="importPayments()">Импорт плащания</button><span class="muted">CSV UTF-8 с колони: име клиент, номер док, дата док., рег.номер, описание на операцията, ст-ст, основание, МОЛ-2, начин на плащане</span></div></div><div class="wrap">
 <div class="card bigmsg"><b>Началният екран вече е „Клиенти / начални салда / начисления“.</b> Там ръчно се променят началните салда и месечните начисления. Плащанията и справките се преизчисляват автоматично.</div>
 <div class="tabs"><button class="tab active" onclick="show('clients',this)">Клиенти / салда / начисления</button><button class="tab" onclick="show('pay',this)">Въведи плащане</button><button class="tab" onclick="show('dash',this)">Салда</button><button class="tab" onclick="show('period',this)">Справка период</button><button class="tab" onclick="show('history',this)">Хронология плащания</button><button class="tab" onclick="show('tools',this)">Архив/експорт</button></div>
 <section id="dash" class="hidden"><div class="card"><div class="top"><h2>Салда към дата</h2><div class="actions"><div><label>Към дата</label><input id="dueDate" type="date" onchange="renderDash()"></div><div><label>Търсене</label><input id="dueSearch" oninput="renderDash()" placeholder="име"></div><button class="gray" onclick="exportDueCsv()">Експорт CSV</button></div></div><div class="kpis"><div class="kpi"><span>Общо начално+начисления</span><b id="sumCharged">0.00</b></div><div class="kpi"><span>Общо платено</span><b id="sumPaid">0.00</b></div><div class="kpi"><span>Общо дължимо</span><b id="sumDue">0.00</b></div><div class="kpi"><span>Клиенти</span><b id="sumClients">0</b></div></div></div><div class="card tablewrap"><table id="dueTable"></table></div></section>
@@ -134,20 +127,5 @@ function enableClientColumnResize(){
   });
 }
 function applyClientColumnWidth(){const saved=localStorage.getItem('RADENA_CLIENT_COL_WIDTH');if(saved)document.documentElement.style.setProperty('--client-col-width',saved+'px');setTimeout(enableClientColumnResize,0)}
-
-
-// RADENA login helper: Enter key on password field
-setTimeout(function(){
-  var p=document.getElementById('passInput');
-  if(p){
-    p.focus();
-    p.addEventListener('keydown', function(e){
-      if(e.key==='Enter'){
-        var btn=p.parentElement.querySelector('button');
-        if(btn) btn.click();
-      }
-    });
-  }
-}, 100);
 function init(){dueDate.value=today();payDate.value=today();repFrom.value='2026-03-01';repTo.value='2026-07-31';refresh()}init();
 </script></body></html>
