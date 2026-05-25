@@ -1,174 +1,166 @@
-<!doctype html>
-<html lang="bg"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RADENA WEB V3</title>
-<style>
-body{margin:0;background:#f3f6fb;font-family:Segoe UI,Arial,sans-serif;color:#101827}header{background:#111827;color:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}h1{margin:0;font-size:22px}.wrap{max-width:1320px;margin:auto;padding:14px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tab{background:#fff;border:1px solid #cfd8e3;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:700;color:#111}.tab.active{background:#1d4ed8;color:white}.card{background:white;border:1px solid #d7dee9;border-radius:14px;padding:14px;margin-bottom:14px;box-shadow:0 4px 14px #00000010}.grid{display:grid;grid-template-columns:repeat(4,minmax(170px,1fr));gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:10px}@media(max-width:850px){.grid,.grid3{grid-template-columns:1fr}}label{display:block;font-size:12px;color:#64748b;margin-bottom:4px}input,select,button{font:inherit}input,select{width:100%;padding:9px;border:1px solid #cfd8e3;border-radius:10px;background:white}button{padding:10px 13px;border:0;border-radius:10px;background:#1d4ed8;color:#fff;font-weight:700;cursor:pointer}.green{background:#047857}.red{background:#b91c1c}.gray{background:#475569}.light{background:#e2e8f0;color:#111}.tablewrap{max-height:540px;overflow:auto;border:1px solid #d7dee9;border-radius:12px}table{width:100%;border-collapse:collapse;background:white}th,td{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left;font-size:14px}th{background:#eef2ff;position:sticky;top:0;z-index:1}.num{text-align:right}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.kpi{border:1px solid #d7dee9;border-radius:14px;padding:12px;background:#f8fafc}.kpi b{font-size:23px;display:block}.hidden{display:none}.muted{color:#64748b;font-size:13px}.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:end}.top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.danger{color:#b91c1c}.ok{color:#047857}.bigmsg{font-size:16px;background:#fff7ed;border-color:#fed7aa}.rowDue{font-weight:700}.nowrap{white-space:nowrap}
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>АКТИВ БУРГАС ЕООД | Счетоводни услуги в цяла България</title>
+  <meta name="description" content="Счетоводни услуги, ТРЗ, ДДС, ГФО и дистанционно обслужване за клиенти в Бургас, София, Русе и цяла България. Месечен абонамент от 100 евро." />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="#top">
+        <span class="logo">КПД</span>
+        <span>
+          <strong>АКТИВ БУРГАС ЕООД</strong>
+          <small>Коректност · Прецизност · Доверие</small>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-label="Меню">☰</button>
+      <div class="nav-links">
+        <a href="#services">Услуги</a>
+        <a href="#remote">Дистанционно</a>
+        <a href="#prices">Цени</a>
+        <a href="#app">Приложение</a>
+        <a href="#contact" class="btn small">Контакт</a>
+      </div>
+    </nav>
+  </header>
 
-/* RADENA: широка и разтегляема колона Клиент */
-th.client-col, td.client-col{min-width:260px;width:var(--client-col-width,360px)}
-th.client-col{position:sticky;left:0;z-index:3;background:#f8fafc}
-td.client-col{background:white}
-th.client-col .resizer{position:absolute;right:0;top:0;width:8px;height:100%;cursor:col-resize;user-select:none;background:transparent}
-th.client-col .resizer:hover{background:#93c5fd}
-.importBox{background:#eef6ff;border:1px solid #bfdbfe;border-radius:14px;padding:12px;margin:12px 0;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.importBox b{color:#111827}
-</style></head><body><header><h1>RADENA WEB V3</h1><div>Клиенти + начисления + плащания + салда</div></header><div class="wrap"><div class="importBox"><b>Импорт плащания от Excel/CSV:</b><input type="file" id="importFile" accept=".csv"><button onclick="importPayments()">Импорт плащания</button><span class="muted">CSV UTF-8 с колони: име клиент, номер док, дата док., рег.номер, описание на операцията, ст-ст, основание, МОЛ-2, начин на плащане</span></div></div><div class="wrap">
-<div class="card bigmsg"><b>Началният екран вече е „Клиенти / начални салда / начисления“.</b> Там ръчно се променят началните салда и месечните начисления. Плащанията и справките се преизчисляват автоматично.</div>
-<div class="tabs"><button class="tab active" onclick="show('clients',this)">Клиенти / салда / начисления</button><button class="tab" onclick="show('pay',this)">Въведи плащане</button><button class="tab" onclick="show('dash',this)">Салда</button><button class="tab" onclick="show('period',this)">Справка период</button><button class="tab" onclick="show('history',this)">Хронология плащания</button><button class="tab" onclick="show('tools',this)">Архив/експорт</button></div>
-<section id="dash" class="hidden"><div class="card"><div class="top"><h2>Салда към дата</h2><div class="actions"><div><label>Към дата</label><input id="dueDate" type="date" onchange="renderDash()"></div><div><label>Търсене</label><input id="dueSearch" oninput="renderDash()" placeholder="име"></div><button class="gray" onclick="exportDueCsv()">Експорт CSV</button></div></div><div class="kpis"><div class="kpi"><span>Общо начално+начисления</span><b id="sumCharged">0.00</b></div><div class="kpi"><span>Общо платено</span><b id="sumPaid">0.00</b></div><div class="kpi"><span>Общо дължимо</span><b id="sumDue">0.00</b></div><div class="kpi"><span>Клиенти</span><b id="sumClients">0</b></div></div></div><div class="card tablewrap"><table id="dueTable"></table></div></section>
-<section id="pay" class="hidden"><div class="card"><h2>Въведи плащане</h2><div class="grid"><div><label>Клиент</label><select id="payClient"></select></div><div><label>Дата</label><input id="payDate" type="date"></div><div><label>Сума</label><input id="payAmount" type="number" step="0.01"></div><div><label>Номер документ / ПКО</label><input id="payDoc"></div><div><label>Основание</label><input id="payNote" value="Платена вноска"></div><div class="actions"><button class="green" onclick="savePayment()">Запиши плащане</button><button class="light" onclick="clearPay()">Изчисти</button></div></div></div><div class="card"><h2>Последни плащания</h2><div class="tablewrap"><table id="lastPayments"></table></div></div></section>
-<section id="period" class="hidden"><div class="card"><h2>Справка клиент от дата до дата</h2><div class="grid"><div><label>Клиент</label><select id="repClient"></select></div><div><label>От дата</label><input id="repFrom" type="date"></div><div><label>До дата</label><input id="repTo" type="date"></div><div class="actions"><button onclick="renderPeriod()">Покажи</button><button class="gray" onclick="exportPeriodCsv()">Експорт CSV</button></div></div></div><div class="card"><div class="kpis"><div class="kpi"><span>Начално салдо</span><b id="pOpen">0.00</b></div><div class="kpi"><span>Начисления за периода</span><b id="pCharges">0.00</b></div><div class="kpi"><span>Плащания за периода</span><b id="pPays">0.00</b></div><div class="kpi"><span>Крайно салдо</span><b id="pClose">0.00</b></div></div><p class="muted">Начално салдо = начално към 01.01 + начисления преди периода - плащания преди периода.</p></div><div class="card"><h2>Хронология на плащанията в периода</h2><div class="tablewrap"><table id="periodTable"></table></div></div></section>
-<section id="clients"><div class="card"><div class="top"><h2>Клиенти / начални салда / начисления</h2><p class="muted">Тук се виждат начисленията от страницата „Клиенти“ на Excel файла. Можеш ръчно да променяш началното салдо и начисленията по месеци. Записът става веднага след промяна на клетката.</p><div class="actions"><button class="green" onclick="addClient()">Нов клиент</button><div><label>Търсене</label><input id="clientSearch" oninput="renderClients()"></div></div></div></div><div class="card tablewrap"><table id="clientsTable"></table></div></section>
-<section id="history" class="hidden"><div class="card"><div class="top"><h2>Всички плащания</h2><div class="actions"><div><label>Търсене</label><input id="histSearch" oninput="renderHistory()"></div><button class="gray" onclick="exportPaymentsCsv()">Експорт CSV</button><button class="red" onclick="deleteAllPayments()">Изтрий всички плащания</button></div></div></div><div class="card tablewrap"><table id="histTable"></table></div></section>
-<section id="tools" class="hidden"><div class="card"><h2>Архив</h2><div class="actions"><button class="green" onclick="backup()">Свали архив JSON</button><label class="light" style="padding:10px 14px;border-radius:10px;cursor:pointer">Зареди архив JSON<input type="file" accept=".json" onchange="restore(event)" style="display:none"></label><button class="red" onclick="resetDb()">Върни началните данни от Excel</button></div><p class="muted">Данните се пазят в браузъра. Прави архив JSON периодично.</p></div></section>
-</div><script>
-const INITIAL = {"version": "2.0", "source": "RADENA _New.xlsm", "clients": [{"name": "А И Б КАРГОБУЛ ЕООД", "opening": 255.65, "charges": {"jan": 127.82, "feb": 127.82, "mar": 127.82, "apr": 127.82, "may": 127.82, "jun": 127.82, "jul": 127.82, "aug": 127.82, "sep": 127.82, "oct": 127.82, "nov": 127.82, "dec": 127.82}}, {"name": "АНАБЕЛ БЪЛГАРИЯ ЕООД", "opening": 255.65, "charges": {"jan": 260.0, "feb": 260.0, "mar": 260.0, "apr": 260.0, "may": 260.0, "jun": 260.0, "jul": 260.0, "aug": 260.0, "sep": 260.0, "oct": 260.0, "nov": 260.0, "dec": 260.0}}, {"name": "АНАБЕЛ ПРОФЕС.ПОЧИСТВАНЕ", "opening": 204.52, "charges": {"jan": 102.26, "feb": 102.26, "mar": 102.26, "apr": 102.26, "may": 102.26, "jun": 102.26, "jul": 102.26, "aug": 102.26, "sep": 102.26, "oct": 102.26, "nov": 102.26, "dec": 102.26}}, {"name": "АНАБЕЛ ФАСИЛИТИ ЕООД", "opening": 102.26, "charges": {"jan": 102.26, "feb": 102.26, "mar": 102.26, "apr": 102.26, "may": 102.26, "jun": 102.26, "jul": 102.26, "aug": 102.26, "sep": 102.26, "oct": 102.26, "nov": 102.26, "dec": 102.26}}, {"name": "Анти Шоп", "opening": 80.0, "charges": {"jan": 40.0, "feb": 40.0, "mar": 40.0, "apr": 40.0, "may": 40.0, "jun": 40.0, "jul": 40.0, "aug": 40.0, "sep": 40.0, "oct": 40.0, "nov": 40.0, "dec": 40.0}}, {"name": "АРИЕЛА 2011 ЕООД", "opening": 52.0, "charges": {"jan": 52.0, "feb": 52.0, "mar": 52.0, "apr": 52.0, "may": 52.0, "jun": 52.0, "jul": 52.0, "aug": 52.0, "sep": 52.0, "oct": 52.0, "nov": 52.0, "dec": 52.0}}, {"name": "БИ АУТО БУРГАС  ООД", "opening": 123.0, "charges": {"jan": 55.0, "feb": 55.0, "mar": 55.0, "apr": 55.0, "may": 55.0, "jun": 55.0, "jul": 55.0, "aug": 55.0, "sep": 55.0, "oct": 55.0, "nov": 55.0, "dec": 55.0}}, {"name": "БИ МЕТАЛ ЕООД", "opening": 260.0, "charges": {"jan": 260.0, "feb": 260.0, "mar": 260.0, "apr": 260.0, "may": 260.0, "jun": 260.0, "jul": 260.0, "aug": 260.0, "sep": 260.0, "oct": 260.0, "nov": 260.0, "dec": 260.0}}, {"name": "БИНКА ИВАН МИХАЙЛОВ  ЕТ", "opening": 148.0, "charges": {"jan": 148.0, "feb": 148.0, "mar": 148.0, "apr": 148.0, "may": 148.0, "jun": 148.0, "jul": 148.0, "aug": 148.0, "sep": 148.0, "oct": 148.0, "nov": 148.0, "dec": 148.0}}, {"name": "БЛАК СИЙ СОФТУЕР ЕООД", "opening": 127.82, "charges": {"jan": 130.0, "feb": 130.0, "mar": 130.0, "apr": 130.0, "may": 130.0, "jun": 130.0, "jul": 130.0, "aug": 130.0, "sep": 130.0, "oct": 130.0, "nov": 130.0, "dec": 130.0}}, {"name": "ДЖЕЙ ДЖЕЙ УОТЪР 2020 ЕООД", "opening": 102.26, "charges": {"jan": 102.26, "feb": 102.26, "mar": 102.26, "apr": 102.26, "may": 102.26, "jun": 102.26, "jul": 102.26, "aug": 102.26, "sep": 102.26, "oct": 102.26, "nov": 102.26, "dec": 102.26}}, {"name": "ДЖЕЙТИ СОФТУЕР ЕООД", "opening": 127.82, "charges": {"jan": 130.0, "feb": 130.0, "mar": 130.0, "apr": 130.0, "may": 130.0, "jun": 130.0, "jul": 130.0, "aug": 130.0, "sep": 130.0, "oct": 130.0, "nov": 130.0, "dec": 130.0}}, {"name": "ЕБРОС ООД", "opening": 410.0, "charges": {"jan": 410.0, "feb": 410.0, "mar": 410.0, "apr": 410.0, "may": 410.0, "jun": 410.0, "jul": 410.0, "aug": 410.0, "sep": 410.0, "oct": 410.0, "nov": 410.0, "dec": 410.0}}, {"name": "ЗП АНГЕЛ РАЙКОВ", "opening": 383.47, "charges": {"jan": 127.82, "feb": 127.82, "mar": 127.82, "apr": 127.82, "may": 127.82, "jun": 127.82, "jul": 127.82, "aug": 127.82, "sep": 127.82, "oct": 127.82, "nov": 127.82, "dec": 127.82}}, {"name": "ИМАГО ТЛ ЕООД", "opening": 230.08, "charges": {"jan": 230.08, "feb": 230.08, "mar": 230.08, "apr": 230.08, "may": 230.08, "jun": 230.08, "jul": 230.08, "aug": 230.08, "sep": 230.08, "oct": 230.08, "nov": 230.08, "dec": 230.08}}, {"name": "КЕСКИН ООД", "opening": 180.0, "charges": {"jan": 180.0, "feb": 180.0, "mar": 180.0, "apr": 180.0, "may": 180.0, "jun": 180.0, "jul": 180.0, "aug": 180.0, "sep": 180.0, "oct": 180.0, "nov": 180.0, "dec": 180.0}}, {"name": "КОРСАР КОМЕРС ООД", "opening": 230.08, "charges": {"jan": 230.08, "feb": 230.08, "mar": 230.08, "apr": 230.08, "may": 230.08, "jun": 230.08, "jul": 230.08, "aug": 230.08, "sep": 230.08, "oct": 230.08, "nov": 230.08, "dec": 230.08}}, {"name": "КРАЛЕВА ЕООД", "opening": 160.0, "charges": {"jan": 160.0, "feb": 160.0, "mar": 160.0, "apr": 160.0, "may": 160.0, "jun": 160.0, "jul": 160.0, "aug": 160.0, "sep": 160.0, "oct": 160.0, "nov": 160.0, "dec": 160.0}}, {"name": "МАКИ 2006 ЕООД", "opening": 130.0, "charges": {"jan": 130.0, "feb": 130.0, "mar": 130.0, "apr": 130.0, "may": 130.0, "jun": 130.0, "jul": 130.0, "aug": 130.0, "sep": 130.0, "oct": 130.0, "nov": 130.0, "dec": 130.0}}, {"name": "МАРИС 2015 ЕООД", "opening": 75.0, "charges": {"jan": 77.0, "feb": 75.0, "mar": 75.0, "apr": 75.0, "may": 75.0, "jun": 75.0, "jul": 75.0, "aug": 75.0, "sep": 75.0, "oct": 75.0, "nov": 75.0, "dec": 75.0}}, {"name": "МАСТЕР КЕБАП 17 ЕООД", "opening": 200.0, "charges": {"jan": 200.0, "feb": 200.0, "mar": 200.0, "apr": 200.0, "may": 200.0, "jun": 200.0, "jul": 200.0, "aug": 200.0, "sep": 200.0, "oct": 200.0, "nov": 200.0, "dec": 200.0}}, {"name": "МБ-БГ ЕООД", "opening": 0.0, "charges": {"jan": 0.0, "feb": 0.0, "mar": 0.0, "apr": 620.0, "may": 0.0, "jun": 0.0, "jul": 0.0, "aug": 0.0, "sep": 0.0, "oct": 0.0, "nov": 0.0, "dec": 0.0}}, {"name": "МИРА 1974 ЕООД", "opening": 0.0, "charges": {"jan": 51.0, "feb": 51.0, "mar": 51.0, "apr": 51.0, "may": 51.0, "jun": 0.0, "jul": 0.0, "aug": 0.0, "sep": 0.0, "oct": 51.0, "nov": 51.0, "dec": 51.0}}, {"name": "МОДИСИ ЕООД", "opening": 52.0, "charges": {"jan": 52.0, "feb": 52.0, "mar": 52.0, "apr": 52.0, "may": 52.0, "jun": 52.0, "jul": 52.0, "aug": 52.0, "sep": 52.0, "oct": 52.0, "nov": 52.0, "dec": 52.0}}, {"name": "МОКОШ ООД", "opening": 102.26, "charges": {"jan": 102.26, "feb": 102.26, "mar": 102.26, "apr": 102.26, "may": 102.26, "jun": 102.26, "jul": 102.26, "aug": 102.26, "sep": 102.26, "oct": 102.26, "nov": 102.26, "dec": 102.26}}, {"name": "НЕПТУН 2013 ЕООД", "opening": 410.0, "charges": {"jan": 410.0, "feb": 410.0, "mar": 410.0, "apr": 410.0, "may": 410.0, "jun": 410.0, "jul": 410.0, "aug": 410.0, "sep": 410.0, "oct": 410.0, "nov": 410.0, "dec": 410.0}}, {"name": "НИВЕКО ГРУП ЕООД", "opening": 305.0, "charges": {"jan": 305.0, "feb": 305.0, "mar": 305.0, "apr": 305.0, "may": 305.0, "jun": 305.0, "jul": 305.0, "aug": 305.0, "sep": 305.0, "oct": 305.0, "nov": 305.0, "dec": 305.0}}, {"name": "НОВА РИБНА ЕООД", "opening": 613.55, "charges": {"jan": 306.78, "feb": 306.78, "mar": 306.78, "apr": 306.78, "may": 306.78, "jun": 306.78, "jul": 306.78, "aug": 306.78, "sep": 306.78, "oct": 306.78, "nov": 306.78, "dec": 306.78}}, {"name": "ПЕРЛА 2005 ЕООД", "opening": 125.0, "charges": {"jan": 130.0, "feb": 130.0, "mar": 130.0, "apr": 130.0, "may": 130.0, "jun": 130.0, "jul": 130.0, "aug": 130.0, "sep": 130.0, "oct": 130.0, "nov": 130.0, "dec": 130.0}}, {"name": "ПОМА ГРУП ЕООД", "opening": 664.68, "charges": {"jan": 664.68, "feb": 664.68, "mar": 664.68, "apr": 664.68, "may": 664.68, "jun": 664.68, "jul": 664.68, "aug": 664.68, "sep": 664.68, "oct": 664.68, "nov": 664.68, "dec": 664.68}}, {"name": "РИГС-93 ЕООД", "opening": 390.0, "charges": {"jan": 390.0, "feb": 390.0, "mar": 390.0, "apr": 390.0, "may": 390.0, "jun": 390.0, "jul": 390.0, "aug": 390.0, "sep": 390.0, "oct": 390.0, "nov": 390.0, "dec": 390.0}}, {"name": "РУБИН 69 ЕООД", "opening": 205.0, "charges": {"jan": 205.0, "feb": 205.0, "mar": 205.0, "apr": 205.0, "may": 205.0, "jun": 205.0, "jul": 205.0, "aug": 205.0, "sep": 205.0, "oct": 205.0, "nov": 205.0, "dec": 205.0}}, {"name": "САРО 21 ЕООД", "opening": 204.0, "charges": {"jan": 204.0, "feb": 204.0, "mar": 204.0, "apr": 204.0, "may": 204.0, "jun": 204.0, "jul": 204.0, "aug": 204.0, "sep": 204.0, "oct": 204.0, "nov": 204.0, "dec": 204.0}}, {"name": "СПОРТ ДИНАМИК ЕООД", "opening": 80.0, "charges": {"jan": 80.0, "feb": 80.0, "mar": 80.0, "apr": 80.0, "may": 80.0, "jun": 80.0, "jul": 80.0, "aug": 80.0, "sep": 80.0, "oct": 80.0, "nov": 80.0, "dec": 80.0}}, {"name": "СТЕКОС С.Р.Д. 2012 ЕООД", "opening": 335.0, "charges": {"jan": 335.0, "feb": 335.0, "mar": 335.0, "apr": 335.0, "may": 335.0, "jun": 335.0, "jul": 335.0, "aug": 335.0, "sep": 335.0, "oct": 335.0, "nov": 335.0, "dec": 335.0}}, {"name": "СТИМИ 2 ЕООД", "opening": 41.0, "charges": {"jan": 45.0, "feb": 45.0, "mar": 45.0, "apr": 45.0, "may": 45.0, "jun": 45.0, "jul": 45.0, "aug": 45.0, "sep": 45.0, "oct": 45.0, "nov": 45.0, "dec": 45.0}}, {"name": "ФУЛСТРРОЙ 83 ЕООД", "opening": 235.0, "charges": {"jan": 235.0, "feb": 235.0, "mar": 235.0, "apr": 235.0, "may": 235.0, "jun": 235.0, "jul": 235.0, "aug": 235.0, "sep": 235.0, "oct": 235.0, "nov": 235.0, "dec": 235.0}}, {"name": "ХАН АУТО ЕООД", "opening": 843.63, "charges": {"jan": 281.21, "feb": 281.21, "mar": 281.21, "apr": 281.21, "may": 281.21, "jun": 281.21, "jul": 281.21, "aug": 281.21, "sep": 281.21, "oct": 281.21, "nov": 281.21, "dec": 281.21}}, {"name": "ХЕРА 71 ЕООД", "opening": 511.0, "charges": {"jan": 515.0, "feb": 515.0, "mar": 515.0, "apr": 515.0, "may": 515.0, "jun": 515.0, "jul": 515.0, "aug": 515.0, "sep": 515.0, "oct": 515.0, "nov": 515.0, "dec": 515.0}}, {"name": "ЧЕШИРСКИ КОТ ЕООД", "opening": 0.0, "charges": {"jan": 55.0, "feb": 55.0, "mar": 55.0, "apr": 55.0, "may": 55.0, "jun": 55.0, "jul": 55.0, "aug": 55.0, "sep": 55.0, "oct": 55.0, "nov": 55.0, "dec": 55.0}}, {"name": "ШВАРЦБУЛГАРТРАНС ЕООД", "opening": 128.0, "charges": {"jan": 128.0, "feb": 128.0, "mar": 128.0, "apr": 128.0, "may": 128.0, "jun": 128.0, "jul": 128.0, "aug": 128.0, "sep": 128.0, "oct": 128.0, "nov": 128.0, "dec": 128.0}}, {"name": "ШЕРАС СТОРЕ ЕООД", "opening": 80.0, "charges": {"jan": 80.0, "feb": 80.0, "mar": 80.0, "apr": 80.0, "may": 80.0, "jun": 80.0, "jul": 80.0, "aug": 80.0, "sep": 80.0, "oct": 80.0, "nov": 80.0, "dec": 80.0}}], "payments": [{"client": "СПОРТ ДИНАМИК ЕООД", "docNo": "22", "date": "2026-01-05", "operation": "Платена Вноска", "amount": 80.0, "note": "вноска м.12.2025"}, {"client": "ПЕРЛА 2005 ЕООД", "docNo": "23", "date": "2026-01-05", "operation": "Платена Вноска", "amount": 125.0, "note": "вноска м.12.2025"}, {"client": "САРО 21 ЕООД", "docNo": "24", "date": "2026-01-05", "operation": "Платена Вноска", "amount": 204.0, "note": "вноска м.12.2025"}, {"client": "СТЕКОС С.Р.Д. 2012 ЕООД", "docNo": "25", "date": "2026-01-06", "operation": "Платена Вноска", "amount": 335.0, "note": "вноска м.12.2025"}, {"client": "КРАЛЕВА ЕООД", "docNo": "26", "date": "2026-01-07", "operation": "Платена Вноска", "amount": 160.0, "note": "вноска м.12.2025"}, {"client": "НИВЕКО ГРУП ЕООД", "docNo": "27", "date": "2026-01-09", "operation": "Платена Вноска", "amount": 305.0, "note": "вноска м.12.2025"}, {"client": "МАКИ 2006 ЕООД", "docNo": "28", "date": "2026-01-09", "operation": "Платена Вноска", "amount": 130.0, "note": "вноска м.12.2025"}, {"client": "МАСТЕР КЕБАП 17 ЕООД", "docNo": "29", "date": "2026-01-09", "operation": "Платена Вноска", "amount": 174.0, "note": "вноска м.12.2025"}, {"client": "МАРИС 2015 ЕООД", "docNo": "30", "date": "2026-01-09", "operation": "Платена Вноска", "amount": 75.0, "note": "вноска м.12.2025"}, {"client": "БИ МЕТАЛ ЕООД", "docNo": "31", "date": "2026-01-09", "operation": "Платена Вноска", "amount": 260.0, "note": "вноска м.12.2025"}, {"client": "БИНКА ИВАН МИХАЙЛОВ  ЕТ", "docNo": "32", "date": "2026-01-09", "operation": "Платена Вноска", "amount": 148.0, "note": "вноска м.12.2025"}, {"client": "БИ АУТО БУРГАС  ООД", "docNo": "33", "date": "2026-01-14", "operation": "Платена Вноска", "amount": 123.0, "note": "вноска м.11 и м.12.2025"}, {"client": "КЕСКИН ООД", "docNo": "34", "date": "2026-01-19", "operation": "Платена Вноска", "amount": 180.0, "note": "вноска м.12.2025"}, {"client": "СТИМИ 2 ЕООД", "docNo": "35", "date": "2026-01-21", "operation": "Платена Вноска", "amount": 41.0, "note": "вноска м.12.2025"}, {"client": "ЕБРОС ООД", "docNo": "36", "date": "2026-01-21", "operation": "Платена Вноска", "amount": 410.0, "note": "вноска м.12.2025"}, {"client": "АРИЕЛА 2011 ЕООД", "docNo": "37", "date": "2026-01-22", "operation": "Платена Вноска", "amount": 52.0, "note": "вноска м.12.2025"}, {"client": "ФУЛСТРРОЙ 83 ЕООД", "docNo": "38", "date": "2026-01-26", "operation": "Платена Вноска", "amount": 235.0, "note": "вноска м.12.2025"}, {"client": "НЕПТУН 2013 ЕООД", "docNo": "39", "date": "2026-02-02", "operation": "Платена Вноска", "amount": 410.0, "note": "вноска м.12.2025"}, {"client": "ПЕРЛА 2005 ЕООД", "docNo": "40", "date": "2026-02-03", "operation": "Платена Вноска", "amount": 130.0, "note": "вноска м.01.2026"}, {"client": "СПОРТ ДИНАМИК ЕООД", "docNo": "41", "date": "2026-02-03", "operation": "Платена Вноска", "amount": 80.0, "note": "вноска м.01.2026"}, {"client": "РИГС-93 ЕООД", "docNo": "42", "date": "2026-02-03", "operation": "Платена Вноска", "amount": 390.0, "note": "вноска м.01.2026"}, {"client": "ШВАРЦБУЛГАРТРАНС ЕООД", "docNo": "43", "date": "2026-02-03", "operation": "Платена Вноска", "amount": 128.0, "note": "вноска м.01.2026"}, {"client": "МОДИСИ ЕООД", "docNo": "44", "date": "2026-02-03", "operation": "Платена Вноска", "amount": 52.0, "note": "вноска м.01.2026"}, {"client": "ХЕРА 71 ЕООД", "docNo": "45", "date": "2026-02-03", "operation": "Платена Вноска", "amount": 511.0, "note": "вноска м.12.2025"}, {"client": "КРАЛЕВА ЕООД", "docNo": "46", "date": "2026-02-03", "operation": "Платена Вноска", "amount": 160.0, "note": "вноска м.01.2026"}, {"client": "МАКИ 2006 ЕООД", "docNo": "47", "date": "2026-02-05", "operation": "Платена Вноска", "amount": 130.0, "note": "вноска м.01.2026"}, {"client": "МАСТЕР КЕБАП 17 ЕООД", "docNo": "48", "date": "2026-02-05", "operation": "Платена Вноска", "amount": 200.0, "note": "вноска м.01.2026"}, {"client": "СТЕКОС С.Р.Д. 2012 ЕООД", "docNo": "49", "date": "2026-02-05", "operation": "Платена Вноска", "amount": 335.0, "note": "вноска м.01.2026"}, {"client": "САРО 21 ЕООД", "docNo": "50", "date": "2026-02-06", "operation": "Платена Вноска", "amount": 204.0, "note": "вноска м.01.2026"}, {"client": "НИВЕКО ГРУП ЕООД", "docNo": "51", "date": "2026-02-09", "operation": "Платена Вноска", "amount": 305.0, "note": "вноска м.01.2026"}, {"client": "БИНКА ИВАН МИХАЙЛОВ  ЕТ", "docNo": "52", "date": "2026-02-09", "operation": "Платена Вноска", "amount": 148.0, "note": "вноска м.01.2026"}, {"client": "ШЕРАС СТОРЕ ЕООД", "docNo": "53", "date": "2026-02-09", "operation": "Платена Вноска", "amount": 80.0, "note": "вноска м.01.2026"}, {"client": "БИ МЕТАЛ ЕООД", "docNo": "54", "date": "2026-02-09", "operation": "Платена Вноска", "amount": 260.0, "note": "вноска м.01.2026"}, {"client": "БИ АУТО БУРГАС  ООД", "docNo": "55", "date": "2026-02-09", "operation": "Платена Вноска", "amount": 55.0, "note": "вноска м.01.2026"}, {"client": "МАРИС 2015 ЕООД", "docNo": "56", "date": "2026-02-11", "operation": "Платена Вноска", "amount": 77.0, "note": "вноска м.01.2026"}, {"client": "АРИЕЛА 2011 ЕООД", "docNo": "57", "date": "2026-02-13", "operation": "Платена Вноска", "amount": 52.0, "note": "вноска м.01.2026"}, {"client": "Анти Шоп", "docNo": "58", "date": "2026-02-16", "operation": "Платена Вноска", "amount": 80.0, "note": "вноска м.11 и м.12.2025"}, {"client": "СТИМИ 2 ЕООД", "docNo": "59", "date": "2026-02-18", "operation": "Платена Вноска", "amount": 42.0, "note": "вноска м.01.2026"}, {"client": "КЕСКИН ООД", "docNo": "60", "date": "2026-02-19", "operation": "Платена Вноска", "amount": 180.0, "note": "вноска м.01.2026"}, {"client": "ЕБРОС ООД", "docNo": "61", "date": "2026-02-23", "operation": "Платена Вноска", "amount": 410.0, "note": "вноска м.01.2026"}, {"client": "ХЕРА 71 ЕООД", "docNo": "62", "date": "2026-02-25", "operation": "Платена Вноска", "amount": 520.0, "note": "вноска м.01.2026"}, {"client": "ФУЛСТРРОЙ 83 ЕООД", "docNo": "63", "date": "2026-02-27", "operation": "Платена Вноска", "amount": 325.0, "note": "вноска м.01.2026"}, {"client": "НЕПТУН 2013 ЕООД", "docNo": "64", "date": "2026-03-02", "operation": "Платена Вноска", "amount": 409.0, "note": "вноска м.01.2026"}, {"client": "СТЕКОС С.Р.Д. 2012 ЕООД", "docNo": "65", "date": "2026-03-04", "operation": "Платена Вноска", "amount": 335.0, "note": "вноска м.02.2026"}, {"client": "МАСТЕР КЕБАП 17 ЕООД", "docNo": "66", "date": "2026-03-04", "operation": "Платена Вноска", "amount": 174.0, "note": "вноска м.02.2026"}, {"client": "КРАЛЕВА ЕООД", "docNo": "67", "date": "2026-03-04", "operation": "Платена Вноска", "amount": 160.0, "note": "вноска м.02.2026"}, {"client": "ПЕРЛА 2005 ЕООД", "docNo": "68", "date": "2026-03-04", "operation": "Платена Вноска", "amount": 130.0, "note": "вноска м.02.2026"}, {"client": "БИНКА ИВАН МИХАЙЛОВ  ЕТ", "docNo": "69", "date": "2026-03-05", "operation": "Платена Вноска", "amount": 148.0, "note": "вноска м.02.2026"}, {"client": "СПОРТ ДИНАМИК ЕООД", "docNo": "70", "date": "2026-03-05", "operation": "Платена Вноска", "amount": 80.0, "note": "вноска м.02.2026"}, {"client": "ШЕРАС СТОРЕ ЕООД", "docNo": "71", "date": "2026-03-05", "operation": "Платена Вноска", "amount": 60.0, "note": "вноска м.02.2026"}, {"client": "МАКИ 2006 ЕООД", "docNo": "72", "date": "2026-03-03", "operation": "Платена Вноска", "amount": 130.0, "note": "вноска м.02.2026"}, {"client": "НИВЕКО ГРУП ЕООД", "docNo": "73", "date": "2026-03-10", "operation": "Платена Вноска", "amount": 305.0, "note": "вноска м.02.2026"}, {"client": "САРО 21 ЕООД", "docNo": "74", "date": "2026-03-10", "operation": "Платена Вноска", "amount": 200.0, "note": "вноска м.02.2026"}, {"client": "МАРИС 2015 ЕООД", "docNo": "75", "date": "2026-03-10", "operation": "Платена Вноска", "amount": 77.0, "note": "вноска м.02.2026"}, {"client": "БИ МЕТАЛ ЕООД", "docNo": "76", "date": "2026-03-11", "operation": "Платена Вноска", "amount": 260.0, "note": "вноска м.02.2026"}, {"client": "БИ АУТО БУРГАС  ООД", "docNo": "77", "date": "2026-03-11", "operation": "Платена Вноска", "amount": 55.0, "note": "вноска м.02.2026"}, {"client": "ЧЕШИРСКИ КОТ ЕООД", "docNo": "78", "date": "2026-03-12", "operation": "Платена Вноска", "amount": 165.0, "note": "вноска м.01.м.02.м.03"}, {"client": "КЕСКИН ООД", "docNo": "79", "date": "2026-03-17", "operation": "Платена Вноска", "amount": 180.0, "note": "вноска м.02.2026"}, {"client": "ЕБРОС ООД", "docNo": "80", "date": "2026-03-19", "operation": "Платена Вноска", "amount": 410.0, "note": "вноска м.02.2026"}, {"client": "СТИМИ 2 ЕООД", "docNo": "81", "date": "2026-03-20", "operation": "Платена Вноска", "amount": 41.0, "note": "вноска м.02.2026"}, {"client": "АНАБЕЛ БЪЛГАРИЯ ЕООД", "docNo": "82", "date": "2026-01-22", "operation": "Платена Вноска", "amount": 255.65, "note": "вноска м.12.2025"}, {"client": "МОКОШ ООД", "docNo": "83", "date": "2026-01-22", "operation": "Платена Вноска", "amount": 102.26, "note": "вноска м.12.2025"}, {"client": "БЛАК СИЙ СОФТУЕР ЕООД", "docNo": "84", "date": "2026-01-21", "operation": "Платена Вноска", "amount": 127.82, "note": "вноска м.12.2025"}, {"client": "АНАБЕЛ ФАСИЛИТИ ЕООД", "docNo": "85", "date": "2026-01-22", "operation": "Платена Вноска", "amount": 102.26, "note": "вноска м.12.2025"}, {"client": "ПОМА ГРУП ЕООД", "docNo": "86", "date": "2026-01-23", "operation": "Платена Вноска", "amount": 664.68, "note": "вноска м.12.2025"}, {"client": "АНАБЕЛ ПРОФЕС.ПОЧИСТВАНЕ", "docNo": "87", "date": "2026-01-23", "operation": "Платена Вноска", "amount": 102.26, "note": "вноска м.11.2025"}, {"client": "ДЖЕЙТИ СОФТУЕР ЕООД", "docNo": "88", "date": "2026-01-26", "operation": "Платена Вноска", "amount": 127.82, "note": "вноска м.12.2025"}, {"client": "АНАБЕЛ БЪЛГАРИЯ ЕООД", "docNo": "89", "date": "2026-02-13", "operation": "Платена Вноска", "amount": 255.65, "note": "вноска м.01.2026"}, {"client": "А И Б КАРГОБУЛ ЕООД", "docNo": "90", "date": "2026-02-16", "operation": "Платена Вноска", "amount": 255.65, "note": "вноска м.11 и м.12.2025"}, {"client": "МОКОШ ООД", "docNo": "91", "date": "2026-02-19", "operation": "Платена Вноска", "amount": 102.26, "note": "вноска м.01.2026"}, {"client": "АНАБЕЛ ФАСИЛИТИ ЕООД", "docNo": "92", "date": "2026-02-19", "operation": "Платена Вноска", "amount": 102.26, "note": "вноска м.01.2026"}, {"client": "БЛАК СИЙ СОФТУЕР ЕООД", "docNo": "93", "date": "2026-02-23", "operation": "Платена Вноска", "amount": 127.82, "note": "вноска м.01.2026"}, {"client": "АНАБЕЛ ПРОФЕС.ПОЧИСТВАНЕ", "docNo": "94", "date": "2026-02-25", "operation": "Платена Вноска", "amount": 102.26, "note": "вноска м.01.2026"}, {"client": "ПОМА ГРУП ЕООД", "docNo": "95", "date": "2026-02-25", "operation": "Платена Вноска", "amount": 664.68, "note": "вноска м.01.2026"}, {"client": "ДЖЕЙТИ СОФТУЕР ЕООД", "docNo": "96", "date": "2026-02-25", "operation": "Платена Вноска", "amount": 127.82, "note": "вноска м.01.2026"}, {"client": "АНАБЕЛ ФАСИЛИТИ ЕООД", "docNo": "97", "date": "2026-03-20", "operation": "Платена Вноска", "amount": 102.26, "note": "вноска м.02.2026"}, {"client": "АНАБЕЛ ПРОФЕС.ПОЧИСТВАНЕ", "docNo": "98", "date": "2026-03-20", "operation": "Платена Вноска", "amount": 102.26, "note": "вноска м.02.2026"}, {"client": "МОКОШ ООД", "docNo": "99", "date": "2026-03-20", "operation": "Платена Вноска", "amount": 102.26, "note": "вноска м.02.2026"}, {"client": "ПОМА ГРУП ЕООД", "docNo": "100", "date": "2026-03-20", "operation": "Платена Вноска", "amount": 664.68, "note": "вноска м.02.2026"}, {"client": "АНАБЕЛ БЪЛГАРИЯ ЕООД", "docNo": "101", "date": "2026-03-10", "operation": "Платена Вноска", "amount": 255.65, "note": "вноска м.02.2026"}, {"client": "ИМАГО ТЛ ЕООД", "docNo": "102", "date": "2026-01-06", "operation": "Платена Вноска", "amount": 230.08, "note": "вноска м.12.2025"}, {"client": "НОВА РИБНА ЕООД", "docNo": "103", "date": "2026-01-14", "operation": "Платена Вноска", "amount": 613.55, "note": "вноска м.11 и м.12.2025"}, {"client": "КОРСАР КОМЕРС ООД", "docNo": "104", "date": "2026-01-22", "operation": "Платена Вноска", "amount": 230.08, "note": "вноска м.12.2025"}, {"client": "ДЖЕЙ ДЖЕЙ УОТЪР 2020 ЕООД", "docNo": "105", "date": "2026-01-22", "operation": "Платена Вноска", "amount": 102.26, "note": "вноска м.01.2026"}, {"client": "ИМАГО ТЛ ЕООД", "docNo": "106", "date": "2026-02-03", "operation": "Платена Вноска", "amount": 230.08, "note": "вноска м.01.2026"}, {"client": "КОРСАР КОМЕРС ООД", "docNo": "107", "date": "2026-02-23", "operation": "Платена Вноска", "amount": 230.08, "note": "вноска м.01.2026"}, {"client": "ДЖЕЙ ДЖЕЙ УОТЪР 2020 ЕООД", "docNo": "108", "date": "2026-02-27", "operation": "Платена Вноска", "amount": 102.26, "note": "вноска м.02.2026"}, {"client": "БЛАК СИЙ СОФТУЕР ЕООД", "docNo": "109", "date": "2026-03-23", "operation": "Платена Вноска", "amount": 127.82, "note": "вноска м.02.2026"}, {"client": "ДЖЕЙТИ СОФТУЕР ЕООД", "docNo": "109", "date": "2026-03-25", "operation": "Платена Вноска", "amount": 127.82, "note": "вноска м.02.2026"}]};
-const months=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
-const monthNames=['Януари','Февруари','Март','Април','Май','Юни','Юли','Август','Септември','Октомври','Ноември','Декември'];
-let db=load(); let lastPeriod=[];
-function load(){try{return JSON.parse(localStorage.getItem('RADENA_WEB_V2'))||structuredClone(INITIAL)}catch(e){return JSON.parse(JSON.stringify(INITIAL))}}
-function save(){localStorage.setItem('RADENA_WEB_V2',JSON.stringify(db))}
-function today(){return new Date().toISOString().slice(0,10)}
-function d(s){return new Date((s||'1900-01-01')+'T00:00:00')}
-function money(n){return (Number(n)||0).toLocaleString('bg-BG',{minimumFractionDigits:2,maximumFractionDigits:2})}
-function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function show(id,btn){document.querySelectorAll('section').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));btn.classList.add('active');refresh()}
-function refresh(){fillSelects();renderDash();renderLast();renderHistory();renderPeriod();renderClients()}
-function cByName(n){return db.clients.find(c=>c.name===n)}
-function fillSelects(){let names=db.clients.map(c=>c.name).sort((a,b)=>a.localeCompare(b,'bg'));for(let id of ['payClient','repClient']){let el=document.getElementById(id);let old=el.value;el.innerHTML=names.map(n=>`<option>${esc(n)}</option>`).join('');if(names.includes(old))el.value=old}}
-function chargesToDate(c,to){let td=d(to);let sum=Number(c.opening)||0;for(let i=0;i<=td.getMonth();i++)sum+=Number(c.charges[months[i]])||0;return sum}
-function paysToDate(name,to){let td=d(to);return db.payments.filter(p=>p.client===name && d(p.date)<=td).reduce((s,p)=>s+(Number(p.amount)||0),0)}
-function renderDash(){if(!dueDate.value)dueDate.value=today();let q=(dueSearch.value||'').toLowerCase();let rows=db.clients.filter(c=>c.name.toLowerCase().includes(q)).map(c=>{let ch=chargesToDate(c,dueDate.value);let pa=paysToDate(c.name,dueDate.value);return {name:c.name,charged:ch,paid:pa,due:ch-pa}}).sort((a,b)=>b.due-a.due);let sc=0,sp=0,sd=0;rows.forEach(r=>{sc+=r.charged;sp+=r.paid;sd+=r.due});sumCharged.textContent=money(sc);sumPaid.textContent=money(sp);sumDue.textContent=money(sd);sumClients.textContent=rows.length;let h='<tr><th>Клиент</th><th class="num">Начално+начисления</th><th class="num">Платено</th><th class="num">Дължи</th><th></th></tr>';h+=rows.map(r=>`<tr class="${r.due>0?'rowDue':''}"><td>${esc(r.name)}</td><td class="num">${money(r.charged)}</td><td class="num">${money(r.paid)}</td><td class="num ${r.due>0?'danger':'ok'}">${money(r.due)}</td><td><button onclick="quickPay('${esc(r.name)}')">Плащане</button></td></tr>`).join('');dueTable.innerHTML=h}
-function quickPay(name){show('pay',document.querySelectorAll('.tab')[1]);payClient.value=name;payAmount.focus()}
-function savePayment(){let p={client:payClient.value,date:payDate.value||today(),amount:Number(payAmount.value)||0,docNo:payDoc.value||'',operation:'Платена Вноска',note:payNote.value||'Платена вноска'};if(!p.client)return alert('Избери клиент');if(!p.amount || p.amount<=0)return alert('Въведи сума');db.payments.push(p);save();clearPay();refresh();alert('Плащането е записано и салдото е обновено.')}
-function clearPay(){payAmount.value='';payDoc.value='';payNote.value='Платена вноска';payDate.value=today()}
-function renderLast(){let rows=[...db.payments].sort((a,b)=>d(b.date)-d(a.date)).slice(0,20);lastPayments.innerHTML='<tr><th>Дата</th><th>Клиент</th><th>Док.</th><th class="num">Сума</th><th>Основание</th></tr>'+rows.map(p=>`<tr><td>${p.date}</td><td>${esc(p.client)}</td><td>${esc(p.docNo)}</td><td class="num">${money(p.amount)}</td><td>${esc(p.note)}</td></tr>`).join('')}
-function renderHistory(){let q=(histSearch.value||'').toLowerCase();let rows=db.payments.filter(p=>p.client.toLowerCase().includes(q)).sort((a,b)=>d(b.date)-d(a.date));histTable.innerHTML='<tr><th>Дата</th><th>Клиент</th><th>Док.</th><th>Операция</th><th class="num">Сума</th><th>Основание</th><th>Действия</th></tr>'+rows.map((p,i)=>`<tr><td>${p.date}</td><td>${esc(p.client)}</td><td>${esc(p.docNo)}</td><td>${esc(p.operation)}</td><td class="num">${money(p.amount)}</td><td>${esc(p.note)}</td><td><button onclick="editPay(${i})">Редакция</button> <button class="red" onclick="delPay('${p.date}', '${esc(p.client)}', ${p.amount}, '${esc(p.docNo)}')">X</button></td></tr>`).join('')}
-function delPay(date,client,amount,doc){if(!confirm('Да изтрия плащането?'))return;let idx=db.payments.findIndex(p=>p.date===date&&p.client===client&&Number(p.amount)===Number(amount)&&String(p.docNo)===doc);if(idx>=0){db.payments.splice(idx,1);save();refresh()}}
+  <main id="top">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Счетоводни услуги за цялата страна</p>
+        <h1>Счетоводство без разстояние — навреме, точно и под контрол.</h1>
+        <p class="lead">АКТИВ БУРГАС ЕООД предлага месечно счетоводно обслужване, ТРЗ, ДДС дневници, годишни отчети и данъчни консултации. Работим дистанционно с клиенти в Бургас, Русе, София и всяка точка на България.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn">Заявете консултация</a>
+          <a href="#prices" class="btn outline">Абонамент от 100 евро</a>
+        </div>
+        <p class="motto">„Парите днес не са парите утре.“</p>
+      </div>
+      <div class="hero-card">
+        <h2>КПД</h2>
+        <p>Коректност</p>
+        <p>Прецизност</p>
+        <p>Доверие</p>
+      </div>
+    </section>
 
-function editPay(index){
-let rows=db.payments.sort((a,b)=>d(b.date)-d(a.date));
-let p=rows[index];
-if(!p)return;
+    <section class="trust-strip">
+      <div><strong>100%</strong><span>дистанционен процес</span></div>
+      <div><strong>24/7</strong><span>достъп до документи</span></div>
+      <div><strong>1 цена</strong><span>за цяла България</span></div>
+      <div><strong>навреме</strong><span>осчетоводяване и справки</span></div>
+    </section>
 
-let newDate=prompt('Дата:', p.date);
-if(newDate===null)return;
+    <section id="services" class="section">
+      <div class="section-head">
+        <p class="eyebrow">Какво предлагаме</p>
+        <h2>Пълно счетоводно обслужване</h2>
+        <p>Подредена система, ясни срокове и бърза реакция при ежедневни въпроси.</p>
+      </div>
+      <div class="cards grid-3">
+        <article class="card"><h3>Счетоводно обслужване</h3><p>Текущо осчетоводяване, регистри, справки, оборотни ведомости и контрол на документите.</p></article>
+        <article class="card"><h3>ДДС дневници</h3><p>Подготовка на покупки, продажби, справка-декларация по ДДС и файлове за НАП.</p></article>
+        <article class="card"><h3>ТРЗ и заплати</h3><p>Ведомости, фишове, болнични, осигуровки, декларации и трудови документи.</p></article>
+        <article class="card"><h3>Годишно приключване</h3><p>ГФО, данъчни декларации, приложения и годишни справки за институции.</p></article>
+        <article class="card"><h3>Данъчни консултации</h3><p>Практични решения по ЗДДС, ЗКПО, ЗДДФЛ и счетоводна организация.</p></article>
+        <article class="card"><h3>Дигитален архив</h3><p>Подреждане на документи по периоди, контрагенти, плащания и справки.</p></article>
+      </div>
+    </section>
 
-let newClient=prompt('Клиент:', p.client);
-if(newClient===null)return;
+    <section id="remote" class="section split remote">
+      <div>
+        <p class="eyebrow">Нашата система</p>
+        <h2>Разработили сме собствен модел за дистанционно обслужване</h2>
+        <p>Не е нужно клиентът да бъде физически в Бургас. Работим така, че фирма от Русе, София, Варна, Пловдив или малко населено място да получи същата бързина, контрол и навременно осчетоводяване като местен клиент.</p>
+        <ul class="checklist">
+          <li>Качване на фактури и документи от телефон или компютър.</li>
+          <li>Бърза проверка, обработка и обратна връзка.</li>
+          <li>Еднакъв стандарт на обслужване за цяла България.</li>
+          <li>Навременни ДДС, ТРЗ и годишни ангажименти.</li>
+        </ul>
+      </div>
+      <div class="process-card">
+        <h3>Как работи</h3>
+        <ol>
+          <li>Изпращате или качвате документите.</li>
+          <li>Ние ги проверяваме и осчетоводяваме.</li>
+          <li>Получавате справки, указания и готови файлове.</li>
+          <li>Сроковете се следят системно.</li>
+        </ol>
+      </div>
+    </section>
 
-let newDoc=prompt('Документ:', p.docNo||'');
-if(newDoc===null)return;
+    <section id="prices" class="section price-section">
+      <div class="price-card">
+        <p class="eyebrow">Стартов пакет</p>
+        <h2>Месечен абонамент от <span>100 евро</span></h2>
+        <p>Подходящ за малки фирми, свободни професии и клиенти, които искат дистанционно, подредено и навременно счетоводно обслужване.</p>
+        <a href="#contact" class="btn">Попитайте за оферта</a>
+      </div>
+    </section>
 
-let newAmount=prompt('Сума:', p.amount);
-if(newAmount===null)return;
+    <section id="app" class="section app-section">
+      <div class="section-head">
+        <p class="eyebrow">Мобилно удобство</p>
+        <h2>Приложение за фактури и качване на документи</h2>
+        <p>Клиентите могат да издават фактури и да качват получени документи директно от телефона си.</p>
+      </div>
+      <div class="cards grid-3">
+        <article class="card app-card"><span>1</span><h3>Сваляне</h3><p>От секцията за изтегляне клиентът получава приложението и кратки инструкции.</p></article>
+        <article class="card app-card"><span>2</span><h3>Инсталация</h3><p>Показваме стъпка по стъпка със снимки как се инсталира и стартира.</p></article>
+        <article class="card app-card"><span>3</span><h3>Работа</h3><p>Издаване на фактури, качване на входящи фактури и предаване към счетоводството.</p></article>
+      </div>
+      <div class="download-box">
+        <div>
+          <h3>Място за бутон за изтегляне</h3>
+          <p>Когато приложението е готово, тук се поставя реалният APK/линк към Google Play или файл за сваляне.</p>
+        </div>
+        <a class="btn outline" href="#">Свали приложението</a>
+      </div>
+    </section>
 
-let newNote=prompt('Основание:', p.note||'');
-if(newNote===null)return;
+    <section class="section guide">
+      <div class="section-head">
+        <p class="eyebrow">Ръководство</p>
+        <h2>Снимки от инсталацията</h2>
+        <p>Тук са подготвени примерни места за екранни снимки. Сменяш изображенията в папка <b>assets</b> и сайтът става с реалните кадри.</p>
+      </div>
+      <div class="screens">
+        <div class="screen">Снимка 1<br><small>Изтегляне</small></div>
+        <div class="screen">Снимка 2<br><small>Разрешаване на инсталация</small></div>
+        <div class="screen">Снимка 3<br><small>Вход в приложението</small></div>
+        <div class="screen">Снимка 4<br><small>Качване на фактура</small></div>
+      </div>
+    </section>
 
-p.date=newDate;
-p.client=newClient;
-p.docNo=newDoc;
-p.amount=parseFloat(String(newAmount).replace(',','.'))||0;
-p.note=newNote;
+    <section id="contact" class="section contact-section">
+      <div>
+        <p class="eyebrow">Свържете се с нас</p>
+        <h2>АКТИВ БУРГАС ЕООД</h2>
+        <p>Счетоводно обслужване за Бургас, Русе, София и цяла България.</p>
+        <div class="contact-actions">
+          <a class="btn" href="tel:+359000000000">Позвънете</a>
+          <a class="btn outline" href="mailto:office@example.com">Изпратете имейл</a>
+          <a class="btn outline" href="viber://chat?number=%2B359000000000">Viber</a>
+        </div>
+        <p class="note">Смени телефон, имейл и линкове в HTML файла с реалните данни.</p>
+      </div>
+      <form class="contact-form" action="mailto:office@example.com" method="post" enctype="text/plain">
+        <label>Име<input type="text" name="name" placeholder="Вашето име" /></label>
+        <label>Телефон<input type="tel" name="phone" placeholder="Телефон за връзка" /></label>
+        <label>Съобщение<textarea name="message" placeholder="Опишете накратко какво счетоводно обслужване търсите"></textarea></label>
+        <button class="btn" type="submit">Изпрати запитване</button>
+      </form>
+    </section>
+  </main>
 
-save();
-refresh();
-alert('Редакцията е записана.');
-}
-function deleteAllPayments(){
-if(!confirm('Сигурен ли си, че искаш да изтриеш ВСИЧКИ плащания?'))return;
-if(!confirm('Това действие е необратимо!'))return;
-db.payments=[];
-save();
-refresh();
-alert('Всички плащания са изтрити.');
-}
-function calcPeriod(){let c=cByName(repClient.value);if(!c)return {open:0,charges:0,pays:0,close:0,rows:[]};let from=repFrom.value||'2026-03-01',to=repTo.value||'2026-07-31';let fd=d(from),td=d(to);let open=Number(c.opening)||0;for(let i=0;i<fd.getMonth();i++)open+=Number(c.charges[months[i]])||0;open-=db.payments.filter(p=>p.client===c.name && d(p.date)<fd).reduce((s,p)=>s+(Number(p.amount)||0),0);let charges=0;for(let i=fd.getMonth();i<=td.getMonth();i++)charges+=Number(c.charges[months[i]])||0;let rows=db.payments.filter(p=>p.client===c.name&&d(p.date)>=fd&&d(p.date)<=td).sort((a,b)=>d(a.date)-d(b.date));let pays=rows.reduce((s,p)=>s+(Number(p.amount)||0),0);return {open,charges,pays,close:open+charges-pays,rows}}
-function renderPeriod(){if(!repFrom.value)repFrom.value='2026-03-01';if(!repTo.value)repTo.value='2026-07-31';let r=calcPeriod();lastPeriod=r.rows;pOpen.textContent=money(r.open);pCharges.textContent=money(r.charges);pPays.textContent=money(r.pays);pClose.textContent=money(r.close);periodTable.innerHTML='<tr><th>Дата</th><th>Док.</th><th class="num">Сума</th><th>Основание</th></tr>'+(r.rows.length?r.rows.map(p=>`<tr><td>${p.date}</td><td>${esc(p.docNo)}</td><td class="num">${money(p.amount)}</td><td>${esc(p.note)}</td></tr>`).join(''):'<tr><td colspan="4" class="muted">Няма плащания за периода.</td></tr>')}
-function renderClients(){let q=(clientSearch?.value||'').toLowerCase();let rows=db.clients.filter(c=>c.name.toLowerCase().includes(q));let h='<tr><th class="client-col">Клиент<div class="resizer"></div></th><th class="num">Нач. салдо</th>'+monthNames.map(m=>`<th class="num nowrap">${m}</th>`).join('')+'</tr>';h+=rows.map(c=>`<tr><td class="client-col"><input value="${esc(c.name)}" onchange="renameClient('${esc(c.name)}',this.value)"></td><td><input class="num" type="number" step="0.01" value="${c.opening||0}" onchange="cByName('${esc(c.name)}').opening=Number(this.value)||0;save();refresh()"></td>`+months.map(m=>`<td><input class="num" type="number" step="0.01" value="${c.charges[m]||0}" onchange="cByName('${esc(c.name)}').charges['${m}']=Number(this.value)||0;save();refresh()"></td>`).join('')+'</tr>').join('');clientsTable.innerHTML=h;applyClientColumnWidth()}
-function renameClient(oldn,newn){newn=(newn||'').trim();if(!newn)return alert('Празно име');if(oldn!==newn&&cByName(newn))return alert('Вече има такъв клиент');let c=cByName(oldn);if(c)c.name=newn;db.payments.forEach(p=>{if(p.client===oldn)p.client=newn});save();refresh()}
-function addClient(){let name=prompt('Име на клиент:');if(!name)return;name=name.trim();if(cByName(name))return alert('Има такъв клиент');let charges={};months.forEach(m=>charges[m]=0);db.clients.push({name,opening:0,charges});save();refresh()}
-function csv(rows){return '\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(';')).join('\r\n')}
-function dl(name,text,type='text/plain;charset=utf-8'){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
-function exportDueCsv(){let rows=[['Клиент','Начално+начисления','Платено','Дължи']];db.clients.forEach(c=>{let ch=chargesToDate(c,dueDate.value||today()),pa=paysToDate(c.name,dueDate.value||today());rows.push([c.name,ch,pa,ch-pa])});dl('RADENA_koi_kolko_dulji.csv',csv(rows),'text/csv;charset=utf-8')}
-function exportPaymentsCsv(){let rows=[['Клиент','Док','Дата','Операция','Сума','Основание']];db.payments.forEach(p=>rows.push([p.client,p.docNo,p.date,p.operation,p.amount,p.note]));dl('RADENA_plashtania.csv',csv(rows),'text/csv;charset=utf-8')}
-function exportPeriodCsv(){let r=calcPeriod();let rows=[['Клиент',repClient.value],['От',repFrom.value],['До',repTo.value],['Начално',r.open],['Начисления',r.charges],['Плащания',r.pays],['Крайно',r.close],[],['Дата','Док','Сума','Основание']];r.rows.forEach(p=>rows.push([p.date,p.docNo,p.amount,p.note]));dl('RADENA_spravka_period.csv',csv(rows),'text/csv;charset=utf-8')}
-function backup(){dl('RADENA_backup.json',JSON.stringify(db,null,2),'application/json;charset=utf-8')}
-function restore(ev){let f=ev.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{db=JSON.parse(r.result);save();refresh();alert('Архивът е зареден')}catch(e){alert('Грешен файл')}};r.readAsText(f,'utf-8')}
-function resetDb(){if(confirm('Връщане към началните данни от Excel?')){localStorage.removeItem('RADENA_WEB_V2');db=load();refresh()}}
-
-function importPayments(){
-  const fileInput=document.getElementById('importFile');
-  const file=fileInput&&fileInput.files?fileInput.files[0]:null;
-  if(!file){alert('Избери CSV файл!');return}
-  const reader=new FileReader();
-  reader.onload=function(e){
-    const text=String(e.target.result||'').replace(/^\uFEFF/,'').trim();
-    if(!text){alert('Файлът е празен.');return}
-    const sep=text.split('\n')[0].includes(';')?';':',';
-    const parseLine=line=>{
-      const out=[];let cur='',q=false;
-      for(let i=0;i<line.length;i++){
-        const ch=line[i];
-        if(ch==='"'){
-          if(q&&line[i+1]==='"'){cur+='"';i++}else q=!q;
-        }else if(ch===sep&&!q){out.push(cur.trim());cur=''}
-        else cur+=ch;
-      }
-      out.push(cur.trim());return out;
-    };
-    const rows=text.split(/\r?\n/).filter(x=>x.trim()).map(parseLine);
-    const headers=rows[0].map(h=>h.trim().toLowerCase());
-    const idx=name=>headers.indexOf(name.toLowerCase());
-    const iClient=idx('име клиент'), iDoc=idx('номер док'), iDate=idx('дата док.'), iReg=idx('рег.номер'), iDesc=idx('описание на операцията'), iAmount=idx('ст-ст'), iReason=idx('основание'), iMol=idx('МОЛ-2'), iPay=idx('начин на плащане');
-    if(iClient<0||iDate<0||iDesc<0||iAmount<0){alert('Липсват задължителни колони: име клиент, дата док., описание на операцията, ст-ст');return}
-    let added=0, skipped=0;
-    for(let i=1;i<rows.length;i++){
-      const row=rows[i];
-      const operation=(row[iDesc]||'').trim();
-      if(operation!=='Платена Вноска'){skipped++;continue}
-      const client=(row[iClient]||'').trim();
-      if(!client){skipped++;continue}
-      let amountText=String(row[iAmount]||'0').trim();
-      amountText=amountText
-        .replace(/\s/g,'')
-        .replace(/\.(?=\d{3}(\D|$))/g,'')
-        .replace(',', '.');
-      const amount=parseFloat(amountText)||0;
-      db.payments.push({
-        client:client,
-        docNo:iDoc>=0?(row[iDoc]||''):'',
-        date:iDate>=0?(row[iDate]||today()):today(),
-        operation:'Платена Вноска',
-        amount:amount,
-        note:iReason>=0?(row[iReason]||''):'',
-        regNumber:iReg>=0?(row[iReg]||''):'',
-        mol2:iMol>=0?(row[iMol]||''):'',
-        paymentMethod:iPay>=0?(row[iPay]||''):''
-      });
-      if(!cByName(client)){
-        let charges={};months.forEach(m=>charges[m]=0);
-        db.clients.push({name:client,opening:0,charges});
-      }
-      added++;
-    }
-    save();refresh();fileInput.value='';
-    alert('Импортът е готов. Добавени плащания: '+added);
-  };
-  reader.readAsText(file,'UTF-8');
-}
-function enableClientColumnResize(){
-  const table=document.getElementById('clientsTable');if(!table)return;
-  const th=table.querySelector('th.client-col');const resizer=table.querySelector('th.client-col .resizer');
-  if(!th||!resizer||resizer.dataset.ready==='1')return;resizer.dataset.ready='1';
-  let startX=0,startWidth=0;
-  resizer.addEventListener('mousedown',function(e){
-    e.preventDefault();e.stopPropagation();startX=e.clientX;startWidth=th.offsetWidth;document.body.style.cursor='col-resize';document.body.style.userSelect='none';
-    function onMove(ev){const newWidth=Math.max(220,startWidth+(ev.clientX-startX));document.documentElement.style.setProperty('--client-col-width',newWidth+'px');localStorage.setItem('RADENA_CLIENT_COL_WIDTH',String(newWidth))}
-    function onUp(){document.removeEventListener('mousemove',onMove);document.removeEventListener('mouseup',onUp);document.body.style.cursor='';document.body.style.userSelect=''}
-    document.addEventListener('mousemove',onMove);document.addEventListener('mouseup',onUp);
-  });
-}
-function applyClientColumnWidth(){const saved=localStorage.getItem('RADENA_CLIENT_COL_WIDTH');if(saved)document.documentElement.style.setProperty('--client-col-width',saved+'px');setTimeout(enableClientColumnResize,0)}
-function init(){dueDate.value=today();payDate.value=today();repFrom.value='2026-03-01';repTo.value='2026-07-31';refresh()}init();
-</script></body></html>
+  <footer class="footer">
+    <p>© <span id="year"></span> АКТИВ БУРГАС ЕООД. КПД — Коректност, Прецизност, Доверие.</p>
+  </footer>
+  <script src="assets/script.js"></script>
+</body>
+</html>
