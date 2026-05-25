@@ -5,216 +5,597 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>АКТИВ БУРГАС ЕООД | Счетоводни услуги</title>
 
-<link rel="stylesheet" href="style.css">
-
+<style>
+:root{
+  --green:#63b86b;
+  --green-dark:#1f6b3a;
+  --green-soft:#eefaf0;
+  --text:#1d2a24;
+  --muted:#5f6f66;
+  --white:#ffffff;
+  --gold:#caa24a;
+  --dark:#10251a;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  color:var(--text);
+  background:#f7fbf8;
+}
+a{color:inherit;text-decoration:none}
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(255,255,255,.94);
+  border-bottom:1px solid #dcefe1;
+  backdrop-filter:blur(10px);
+}
+.navbar{
+  max-width:1180px;
+  margin:auto;
+  padding:14px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  color:var(--green-dark);
+}
+.logo-mark{
+  width:54px;
+  height:54px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--green-dark),var(--green));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  box-shadow:0 10px 25px rgba(31,107,58,.25);
+}
+.logo span small{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+  font-weight:600;
+}
+nav{
+  display:flex;
+  gap:20px;
+  font-weight:700;
+  color:#244234;
+}
+nav a:hover{color:var(--green-dark)}
+.hero{
+  min-height:680px;
+  background:
+    linear-gradient(90deg,rgba(247,251,248,.98) 0%,rgba(247,251,248,.9) 48%,rgba(247,251,248,.45) 100%),
+    url("https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80");
+  background-size:cover;
+  background-position:center;
+}
+.hero-inner{
+  max-width:1180px;
+  margin:auto;
+  padding:95px 22px 70px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:36px;
+  align-items:center;
+}
+.badge{
+  display:inline-block;
+  padding:9px 14px;
+  border-radius:999px;
+  background:#e7f7ea;
+  color:var(--green-dark);
+  font-weight:800;
+  margin-bottom:20px;
+}
+h1{
+  font-size:58px;
+  line-height:1.04;
+  margin:0 0 18px;
+  color:#15271d;
+}
+.hero p{
+  font-size:19px;
+  line-height:1.65;
+  color:#34483b;
+  margin:0 0 14px;
+}
+.buttons{
+  margin-top:28px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+.btn{
+  padding:15px 22px;
+  border-radius:999px;
+  background:var(--green-dark);
+  color:white;
+  font-weight:900;
+  box-shadow:0 15px 35px rgba(31,107,58,.28);
+}
+.btn.alt{
+  background:white;
+  color:var(--green-dark);
+  border:2px solid #cdebd2;
+}
+.visual-card{
+  background:white;
+  border-radius:30px;
+  padding:28px;
+  box-shadow:0 25px 70px rgba(15,55,30,.14);
+  border:1px solid #e3f2e6;
+}
+.visual-card h2{
+  margin:0 0 12px;
+  color:var(--green-dark);
+}
+.mock-chart{
+  height:170px;
+  display:flex;
+  align-items:end;
+  gap:14px;
+  padding:20px;
+  background:linear-gradient(180deg,#f0fbf2,#fff);
+  border-radius:22px;
+  margin:18px 0;
+}
+.bar{
+  flex:1;
+  border-radius:14px 14px 0 0;
+  background:linear-gradient(180deg,var(--green),var(--green-dark));
+}
+.bar:nth-child(1){height:45%}
+.bar:nth-child(2){height:62%}
+.bar:nth-child(3){height:78%}
+.bar:nth-child(4){height:55%}
+.bar:nth-child(5){height:88%}
+.bar:nth-child(6){height:72%}
+.kpi{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.kpi div{
+  background:var(--green-soft);
+  padding:14px;
+  border-radius:18px;
+  font-weight:800;
+  color:var(--green-dark);
+}
+section{
+  max-width:1180px;
+  margin:auto;
+  padding:72px 22px;
+}
+.section-title{
+  text-align:center;
+  margin-bottom:38px;
+}
+.section-title h2{
+  font-size:38px;
+  margin:0 0 10px;
+  color:#183526;
+}
+.section-title p{
+  color:var(--muted);
+  font-size:18px;
+  margin:0;
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+.card{
+  background:white;
+  border:1px solid #e2f1e5;
+  border-radius:24px;
+  padding:24px;
+  box-shadow:0 15px 35px rgba(20,70,35,.08);
+}
+.icon{
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  background:var(--green-soft);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  margin-bottom:14px;
+}
+.card h3{
+  margin:0 0 10px;
+  color:var(--green-dark);
+}
+.card p{
+  margin:0;
+  line-height:1.55;
+  color:#4c6256;
+}
+.remote{
+  background:linear-gradient(135deg,var(--green-dark),#2f8b4f);
+  color:white;
+  border-radius:34px;
+  padding:42px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  align-items:center;
+}
+.remote h2{
+  font-size:38px;
+  margin:0 0 16px;
+}
+.remote p{
+  line-height:1.7;
+  font-size:18px;
+}
+.checks{
+  display:grid;
+  gap:12px;
+}
+.checks div{
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.22);
+  padding:14px 16px;
+  border-radius:16px;
+  font-weight:800;
+}
+.price-box{
+  background:white;
+  border-radius:34px;
+  padding:46px;
+  text-align:center;
+  border:1px solid #e0f0e4;
+  box-shadow:0 20px 55px rgba(20,80,40,.1);
+}
+.price{
+  font-size:54px;
+  font-weight:900;
+  color:var(--green-dark);
+  margin:12px 0;
+}
+.app-box{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:26px;
+  align-items:center;
+}
+.phone{
+  width:260px;
+  height:500px;
+  margin:auto;
+  background:#10251a;
+  border-radius:38px;
+  padding:18px;
+  box-shadow:0 30px 70px rgba(0,0,0,.22);
+}
+.phone-screen{
+  height:100%;
+  background:#f7fbf8;
+  border-radius:28px;
+  padding:20px;
+}
+.phone-screen h3{
+  color:var(--green-dark);
+  margin-top:0;
+}
+.invoice{
+  background:white;
+  border-radius:16px;
+  padding:12px;
+  margin:10px 0;
+  border:1px solid #dcefe1;
+  font-size:14px;
+}
+.contact{
+  background:#10251a;
+  color:white;
+  border-radius:34px;
+  padding:46px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+.contact h2{margin-top:0;font-size:36px}
+.contact p{line-height:1.7;color:#dcefe1}
+.contact-card{
+  background:white;
+  color:var(--text);
+  border-radius:24px;
+  padding:26px;
+}
+.contact-card a{
+  display:block;
+  padding:13px 0;
+  border-bottom:1px solid #e8eee9;
+  color:var(--green-dark);
+  font-weight:900;
+}
+footer{
+  text-align:center;
+  padding:28px;
+  color:#5d7165;
+}
+@media(max-width:900px){
+  nav{display:none}
+  .hero-inner,.remote,.app-box,.contact{grid-template-columns:1fr}
+  h1{font-size:40px}
+  .cards{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .cards{grid-template-columns:1fr}
+  .kpi{grid-template-columns:1fr}
+  .hero-inner{padding-top:60px}
+  h1{font-size:34px}
+}
+</style>
 </head>
 
 <body>
 
-<header class="header">
+<header>
+  <div class="navbar">
+    <div class="logo">
+      <div class="logo-mark">КПД</div>
+      <span>
+        АКТИВ БУРГАС ЕООД
+        <small>Коректност • Прецизност • Доверие</small>
+      </span>
+    </div>
 
-<div class="logo">
-КПД <span>АКТИВ БУРГАС ЕООД</span>
-</div>
-
-<nav class="nav">
-<a href="#uslugi">Услуги</a>
-<a href="#remote">Дистанционно</a>
-<a href="#ceni">Цени</a>
-<a href="#app">Приложение</a>
-<a href="#kontakt">Контакт</a>
-</nav>
-
+    <nav>
+      <a href="#services">Услуги</a>
+      <a href="#remote">Дистанционно</a>
+      <a href="#price">Цени</a>
+      <a href="#app">Приложение</a>
+      <a href="#contact">Контакт</a>
+    </nav>
+  </div>
 </header>
 
-<section class="hero">
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="badge">Счетоводни услуги за цялата страна</div>
 
-<div class="hero-content">
+      <h1>Счетоводство без разстояние.</h1>
 
-<h1>
-Счетоводство без разстояние.
-</h1>
+      <p><strong>Навреме. Точно. Под контрол.</strong></p>
 
-<h2>
-Навреме. Точно. Под контрол.
-</h2>
+      <p>
+        АКТИВ БУРГАС ЕООД предлага професионално счетоводно обслужване,
+        ТРЗ, ДДС дневници, годишни отчети и данъчни консултации.
+      </p>
 
-<p>
-АКТИВ БУРГАС ЕООД предлага професионално счетоводно обслужване
-за фирми в цяла България.
-</p>
+      <p>
+        Работим дистанционно с клиенти в Бургас, Русе, София
+        и всяка точка на България чрез собствена система за бърза обработка
+        на документи.
+      </p>
 
-<p>
-Работим с клиенти в Бургас, София, Русе и всяка точка на България
-чрез собствена система за дистанционно обслужване.
-</p>
+      <div class="buttons">
+        <a class="btn" href="#contact">Заяви консултация</a>
+        <a class="btn alt" href="#price">Абонамент от 100 евро</a>
+      </div>
+    </div>
 
-<div class="buttons">
+    <div class="visual-card">
+      <h2>Вашият успех е нашата сметка</h2>
+      <p>Подредени документи, ясни срокове и навременно осчетоводяване.</p>
 
-<a href="#kontakt" class="btn">
-Заяви консултация
-</a>
+      <div class="mock-chart">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
 
-<a href="#ceni" class="btn2">
-Абонамент от 100 евро
-</a>
-
+      <div class="kpi">
+        <div>100% дистанционно</div>
+        <div>24/7 достъп</div>
+        <div>Цяла България</div>
+        <div>Навременни справки</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-</div>
+<section>
+  <div class="section-title">
+    <h2>КПД</h2>
+    <p>Коректност, Прецизност, Доверие</p>
+  </div>
 
+  <div class="cards">
+    <div class="card">
+      <div class="icon">✅</div>
+      <h3>Коректност</h3>
+      <p>Ясни правила, точна комуникация и отговорно отношение към всеки клиент.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎯</div>
+      <h3>Прецизност</h3>
+      <p>Документите се обработват внимателно, навреме и по подредена система.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🤝</div>
+      <h3>Доверие</h3>
+      <p>Дългосрочно партньорство, спокойствие и контрол върху счетоводството.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">💶</div>
+      <h3>Финансова мисъл</h3>
+      <p><strong>„Парите днес не са парите утре.“</strong></p>
+    </div>
+  </div>
 </section>
 
-<section class="kpd">
+<section id="services">
+  <div class="section-title">
+    <h2>Нашите услуги</h2>
+    <p>Пълно счетоводно обслужване за малък и среден бизнес</p>
+  </div>
 
-<h2>КПД</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="icon">📄</div>
+      <h3>Счетоводно обслужване</h3>
+      <p>Текущо осчетоводяване, регистри, справки, оборотни ведомости и контрол на документите.</p>
+    </div>
 
-<div class="cards">
+    <div class="card">
+      <div class="icon">👥</div>
+      <h3>ТРЗ и заплати</h3>
+      <p>Трудови договори, ведомости, осигуровки, декларации и справки за персонала.</p>
+    </div>
 
-<div class="card">
-<h3>Коректност</h3>
-<p>Ясни срокове, точни данни, отговорност.</p>
-</div>
+    <div class="card">
+      <div class="icon">📊</div>
+      <h3>ДДС дневници</h3>
+      <p>Покупки, продажби, проверки, подготовка и подаване към НАП.</p>
+    </div>
 
-<div class="card">
-<h3>Прецизност</h3>
-<p>Подредена документация и навременно осчетоводяване.</p>
-</div>
-
-<div class="card">
-<h3>Доверие</h3>
-<p>Дългосрочно партньорство и спокойствие за бизнеса.</p>
-</div>
-
-</div>
-
-<p class="quote">
-„Парите днес не са парите утре.“
-</p>
-
+    <div class="card">
+      <div class="icon">📈</div>
+      <h3>Годишни отчети</h3>
+      <p>ГФО, данъчни декларации, справки и публикуване според изискванията.</p>
+    </div>
+  </div>
 </section>
 
-<section id="remote" class="remote">
+<section id="remote">
+  <div class="remote">
+    <div>
+      <h2>Дистанционно обслужване за цяла България</h2>
+      <p>
+        Ние сме си разработили система за дистанционно обслужване,
+        която ни позволява да реагираме с еднаква бързина към клиенти
+        в Бургас, Русе, София и във всяка точка на България.
+      </p>
+      <p>
+        Целта е документите да се движат бързо, да няма излишно чакане
+        и осчетоводяването да става навреме.
+      </p>
+    </div>
 
-<h2>Дистанционно счетоводно обслужване</h2>
-
-<p>
-
-Ние сме разработили собствена система за дистанционно обслужване.
-
-Това ни позволява да реагираме с еднаква скорост и качество
-към клиенти в:
-
-<strong>Бургас</strong>,
-<strong>София</strong>,
-<strong>Русе</strong>
-
-и всяка друга точка на България.
-
-</p>
-
-<ul>
-
-<li>100% дистанционен процес</li>
-
-<li>Качване на фактури онлайн</li>
-
-<li>Издаване на фактури през приложение</li>
-
-<li>Бърза комуникация</li>
-
-<li>Навременно осчетоводяване</li>
-
-</ul>
-
+    <div class="checks">
+      <div>✓ Качване на документи онлайн</div>
+      <div>✓ Издаване на фактури през приложение</div>
+      <div>✓ Бърза реакция при въпроси</div>
+      <div>✓ Навременно осчетоводяване</div>
+      <div>✓ Справки и контрол от разстояние</div>
+    </div>
+  </div>
 </section>
 
-<section id="uslugi" class="services">
+<section id="price">
+  <div class="price-box">
+    <div class="section-title">
+      <h2>Месечен абонамент</h2>
+      <p>Ясна стартова цена за дистанционно счетоводно обслужване</p>
+    </div>
 
-<h2>Нашите услуги</h2>
+    <div class="price">от 100 евро</div>
 
-<div class="cards">
+    <p>
+      Крайната цена се определя според броя документи, персонал,
+      ДДС регистрация и спецификата на дейността.
+    </p>
 
-<div class="card">
-<h3>Счетоводно обслужване</h3>
-<p>Текущо счетоводство, справки, регистри, отчети.</p>
-</div>
-
-<div class="card">
-<h3>ТРЗ и заплати</h3>
-<p>Трудови договори, ведомости, декларации.</p>
-</div>
-
-<div class="card">
-<h3>ДДС дневници</h3>
-<p>Подготовка и подаване към НАП.</p>
-</div>
-
-<div class="card">
-<h3>ГФО</h3>
-<p>Годишни финансови отчети и публикуване.</p>
-</div>
-
-</div>
-
+    <div class="buttons" style="justify-content:center">
+      <a class="btn" href="#contact">Поискай оферта</a>
+    </div>
+  </div>
 </section>
 
-<section id="app" class="app">
+<section id="app">
+  <div class="section-title">
+    <h2>Приложение за фактури и документи</h2>
+    <p>По-бърза връзка между клиента и счетоводството</p>
+  </div>
 
-<h2>Приложение за клиенти</h2>
+  <div class="app-box">
+    <div class="phone">
+      <div class="phone-screen">
+        <h3>АКТИВ Документи</h3>
+        <div class="invoice">📸 Снимай фактура</div>
+        <div class="invoice">⬆️ Качи документ</div>
+        <div class="invoice">🧾 Издай фактура</div>
+        <div class="invoice">📊 Виж справка</div>
+        <div class="invoice">✅ Изпрати към счетоводство</div>
+      </div>
+    </div>
 
-<p>
+    <div class="cards" style="grid-template-columns:1fr 1fr">
+      <div class="card">
+        <div class="icon">📱</div>
+        <h3>С телефона</h3>
+        <p>Снимате фактура или документ и го изпращате директно за обработка.</p>
+      </div>
 
-Ще можете:
+      <div class="card">
+        <div class="icon">🧾</div>
+        <h3>Фактуриране</h3>
+        <p>Възможност за издаване на фактури и организиране на клиентски документи.</p>
+      </div>
 
-</p>
+      <div class="card">
+        <div class="icon">🔐</div>
+        <h3>Подреден архив</h3>
+        <p>Документите се събират по периоди и се обработват навреме.</p>
+      </div>
 
-<ul>
-
-<li>Да качвате фактури.</li>
-
-<li>Да снимате документи с телефон.</li>
-
-<li>Да издавате фактури.</li>
-
-<li>Да следите документи и справки.</li>
-
-</ul>
-
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Бърза реакция</h3>
+        <p>По-малко губене на време и по-бърза комуникация със счетоводството.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="ceni" class="pricing">
+<section id="contact">
+  <div class="contact">
+    <div>
+      <h2>Свържете се с нас</h2>
+      <p>
+        АКТИВ БУРГАС ЕООД предлага счетоводни услуги за клиенти
+        в цяла България. Изпратете запитване за абонаментно обслужване,
+        консултация или дистанционна организация на документи.
+      </p>
+    </div>
 
-<h2>Цени</h2>
-
-<h3>
-Месечен абонамент от 100 евро
-</h3>
-
-<p>
-Индивидуална оферта според обем документи и дейност.
-</p>
-
+    <div class="contact-card">
+      <h3>Контакти</h3>
+      <a href="tel:+359885507507">Телефон: 0885 507 507</a>
+      <a href="mailto:office@aktivburgas.bg">Email: office@aktivburgas.bg</a>
+      <a href="#">Бургас • София • Русе • Цяла България</a>
+    </div>
+  </div>
 </section>
 
-<section id="kontakt" class="contact">
-
-<h2>Контакт</h2>
-
-<p>АКТИВ БУРГАС ЕООД</p>
-
-<p>Email: info@aktivburgas.bg</p>
-
-<p>Телефон: +359 XXX XXX XXX</p>
-
-</section>
-
-<footer class="footer">
-
-<p>
-© АКТИВ БУРГАС ЕООД
-</p>
-
+<footer>
+  © АКТИВ БУРГАС ЕООД • КПД — Коректност, Прецизност, Доверие
 </footer>
 
 </body>
