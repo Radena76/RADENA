@@ -1,602 +1,1140 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>АКТИВ БУРГАС ЕООД | Счетоводни услуги</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#116149">
+  <title>АКТИВ БУРГАС ЕООД | Счетоводни услуги и ТРЗ в България</title>
+  <meta name="description" content="Счетоводно обслужване, ДДС дневници, ТРЗ, ГФО и данъчни декларации за фирми в Бургас, София, Русе и цяла България. Абонамент от 100 евро.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="АКТИВ БУРГАС ЕООД">
+  <link rel="canonical" href="https://radena76.github.io/RADENA/">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="dns-prefetch" href="//images.unsplash.com">
+  <meta property="og:title" content="АКТИВ БУРГАС ЕООД | Счетоводни услуги за цяла България">
+  <meta property="og:description" content="Дистанционно счетоводно обслужване, ТРЗ, ДДС дневници, ГФО и данъчни консултации за фирми в България.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://radena76.github.io/RADENA/">
+  <meta property="og:locale" content="bg_BG">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=70">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AccountingService",
+    "name": "АКТИВ БУРГАС ЕООД",
+    "description": "Счетоводни услуги, дистанционно счетоводно обслужване, ТРЗ, ДДС дневници, ГФО, НАП и данъчни консултации за цяла България.",
+    "areaServed": ["Бургас", "София", "Русе", "България"],
+    "email": "tgs@gbg.bg",
+    "telephone": "+359885507507",
+    "priceRange": "от 100 EUR",
+    "url": "https://radena76.github.io/RADENA/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Може ли фирма от София да се обслужва от Бургас?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. При дистанционното обслужване документите се изпращат онлайн, а комуникацията може да бъде по телефон, email или приложение."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Как се изпращат фактурите?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Фактурите могат да се изпращат като файлове, снимки от телефон или по електронен път, така че да стигат бързо и подредено."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Работите ли с ДДС регистрирани фирми?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Подготвят се ДДС дневници покупки и продажби, справка-декларация по ДДС и нужните контролни проверки."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --brand: #116149;
+      --brand-dark: #0d3d31;
+      --brand-soft: #e8f4ef;
+      --ink: #13201b;
+      --text: #2f4039;
+      --muted: #65736d;
+      --line: #dce7e1;
+      --surface: #ffffff;
+      --paper: #f6f8f4;
+      --blue: #2f6f8f;
+      --gold: #c99a2e;
+      --shadow: 0 16px 40px rgba(19, 32, 27, 0.10);
+      --radius: 8px;
+      --container: 1180px;
+    }
 
-<style>
-:root{
-  --green:#63b86b;
-  --green-dark:#1f6b3a;
-  --green-soft:#eefaf0;
-  --text:#1d2a24;
-  --muted:#5f6f66;
-  --white:#ffffff;
-  --gold:#caa24a;
-  --dark:#10251a;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  color:var(--text);
-  background:#f7fbf8;
-}
-a{color:inherit;text-decoration:none}
-header{
-  position:sticky;
-  top:0;
-  z-index:10;
-  background:rgba(255,255,255,.94);
-  border-bottom:1px solid #dcefe1;
-  backdrop-filter:blur(10px);
-}
-.navbar{
-  max-width:1180px;
-  margin:auto;
-  padding:14px 22px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-}
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:900;
-  color:var(--green-dark);
-}
-.logo-mark{
-  width:54px;
-  height:54px;
-  border-radius:14px;
-  background:linear-gradient(135deg,var(--green-dark),var(--green));
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  box-shadow:0 10px 25px rgba(31,107,58,.25);
-}
-.logo span small{
-  display:block;
-  color:var(--muted);
-  font-size:12px;
-  margin-top:3px;
-  font-weight:600;
-}
-nav{
-  display:flex;
-  gap:20px;
-  font-weight:700;
-  color:#244234;
-}
-nav a:hover{color:var(--green-dark)}
-.hero{
-  min-height:680px;
-  background:
-    linear-gradient(90deg,rgba(247,251,248,.98) 0%,rgba(247,251,248,.9) 48%,rgba(247,251,248,.45) 100%),
-    url("https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80");
-  background-size:cover;
-  background-position:center;
-}
-.hero-inner{
-  max-width:1180px;
-  margin:auto;
-  padding:95px 22px 70px;
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:36px;
-  align-items:center;
-}
-.badge{
-  display:inline-block;
-  padding:9px 14px;
-  border-radius:999px;
-  background:#e7f7ea;
-  color:var(--green-dark);
-  font-weight:800;
-  margin-bottom:20px;
-}
-h1{
-  font-size:58px;
-  line-height:1.04;
-  margin:0 0 18px;
-  color:#15271d;
-}
-.hero p{
-  font-size:19px;
-  line-height:1.65;
-  color:#34483b;
-  margin:0 0 14px;
-}
-.buttons{
-  margin-top:28px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px;
-}
-.btn{
-  padding:15px 22px;
-  border-radius:999px;
-  background:var(--green-dark);
-  color:white;
-  font-weight:900;
-  box-shadow:0 15px 35px rgba(31,107,58,.28);
-}
-.btn.alt{
-  background:white;
-  color:var(--green-dark);
-  border:2px solid #cdebd2;
-}
-.visual-card{
-  background:white;
-  border-radius:30px;
-  padding:28px;
-  box-shadow:0 25px 70px rgba(15,55,30,.14);
-  border:1px solid #e3f2e6;
-}
-.visual-card h2{
-  margin:0 0 12px;
-  color:var(--green-dark);
-}
-.mock-chart{
-  height:170px;
-  display:flex;
-  align-items:end;
-  gap:14px;
-  padding:20px;
-  background:linear-gradient(180deg,#f0fbf2,#fff);
-  border-radius:22px;
-  margin:18px 0;
-}
-.bar{
-  flex:1;
-  border-radius:14px 14px 0 0;
-  background:linear-gradient(180deg,var(--green),var(--green-dark));
-}
-.bar:nth-child(1){height:45%}
-.bar:nth-child(2){height:62%}
-.bar:nth-child(3){height:78%}
-.bar:nth-child(4){height:55%}
-.bar:nth-child(5){height:88%}
-.bar:nth-child(6){height:72%}
-.kpi{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-}
-.kpi div{
-  background:var(--green-soft);
-  padding:14px;
-  border-radius:18px;
-  font-weight:800;
-  color:var(--green-dark);
-}
-section{
-  max-width:1180px;
-  margin:auto;
-  padding:72px 22px;
-}
-.section-title{
-  text-align:center;
-  margin-bottom:38px;
-}
-.section-title h2{
-  font-size:38px;
-  margin:0 0 10px;
-  color:#183526;
-}
-.section-title p{
-  color:var(--muted);
-  font-size:18px;
-  margin:0;
-}
-.cards{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-.card{
-  background:white;
-  border:1px solid #e2f1e5;
-  border-radius:24px;
-  padding:24px;
-  box-shadow:0 15px 35px rgba(20,70,35,.08);
-}
-.icon{
-  width:52px;
-  height:52px;
-  border-radius:16px;
-  background:var(--green-soft);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:26px;
-  margin-bottom:14px;
-}
-.card h3{
-  margin:0 0 10px;
-  color:var(--green-dark);
-}
-.card p{
-  margin:0;
-  line-height:1.55;
-  color:#4c6256;
-}
-.remote{
-  background:linear-gradient(135deg,var(--green-dark),#2f8b4f);
-  color:white;
-  border-radius:34px;
-  padding:42px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-  align-items:center;
-}
-.remote h2{
-  font-size:38px;
-  margin:0 0 16px;
-}
-.remote p{
-  line-height:1.7;
-  font-size:18px;
-}
-.checks{
-  display:grid;
-  gap:12px;
-}
-.checks div{
-  background:rgba(255,255,255,.13);
-  border:1px solid rgba(255,255,255,.22);
-  padding:14px 16px;
-  border-radius:16px;
-  font-weight:800;
-}
-.price-box{
-  background:white;
-  border-radius:34px;
-  padding:46px;
-  text-align:center;
-  border:1px solid #e0f0e4;
-  box-shadow:0 20px 55px rgba(20,80,40,.1);
-}
-.price{
-  font-size:54px;
-  font-weight:900;
-  color:var(--green-dark);
-  margin:12px 0;
-}
-.app-box{
-  display:grid;
-  grid-template-columns:.9fr 1.1fr;
-  gap:26px;
-  align-items:center;
-}
-.phone{
-  width:260px;
-  height:500px;
-  margin:auto;
-  background:#10251a;
-  border-radius:38px;
-  padding:18px;
-  box-shadow:0 30px 70px rgba(0,0,0,.22);
-}
-.phone-screen{
-  height:100%;
-  background:#f7fbf8;
-  border-radius:28px;
-  padding:20px;
-}
-.phone-screen h3{
-  color:var(--green-dark);
-  margin-top:0;
-}
-.invoice{
-  background:white;
-  border-radius:16px;
-  padding:12px;
-  margin:10px 0;
-  border:1px solid #dcefe1;
-  font-size:14px;
-}
-.contact{
-  background:#10251a;
-  color:white;
-  border-radius:34px;
-  padding:46px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-}
-.contact h2{margin-top:0;font-size:36px}
-.contact p{line-height:1.7;color:#dcefe1}
-.contact-card{
-  background:white;
-  color:var(--text);
-  border-radius:24px;
-  padding:26px;
-}
-.contact-card a{
-  display:block;
-  padding:13px 0;
-  border-bottom:1px solid #e8eee9;
-  color:var(--green-dark);
-  font-weight:900;
-}
-footer{
-  text-align:center;
-  padding:28px;
-  color:#5d7165;
-}
-@media(max-width:900px){
-  nav{display:none}
-  .hero-inner,.remote,.app-box,.contact{grid-template-columns:1fr}
-  h1{font-size:40px}
-  .cards{grid-template-columns:1fr 1fr}
-}
-@media(max-width:560px){
-  .cards{grid-template-columns:1fr}
-  .kpi{grid-template-columns:1fr}
-  .hero-inner{padding-top:60px}
-  h1{font-size:34px}
-}
-</style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--paper);
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(201, 154, 46, 0.55);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -60px;
+      z-index: 100;
+      padding: 10px 14px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 6px;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    .container {
+      width: min(100% - 40px, var(--container));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--brand-dark);
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--brand), var(--blue));
+      color: #fff;
+      font-size: 18px;
+      box-shadow: 0 10px 25px rgba(17, 97, 73, 0.20);
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: #29433a;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: var(--brand);
+      border-color: var(--gold);
+    }
+
+    .header-phone {
+      padding: 10px 14px;
+      border: 1px solid var(--brand);
+      border-radius: 6px;
+      color: var(--brand);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 72svh;
+      isolation: isolate;
+      overflow: hidden;
+      background: var(--brand-dark);
+      color: #fff;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(10, 44, 34, 0.88), rgba(10, 44, 34, 0.66), rgba(10, 44, 34, 0.20)),
+        linear-gradient(0deg, rgba(10, 44, 34, 0.46), transparent 46%);
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      padding: 92px 0 72px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 8px 11px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #edf7f3;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 18px;
+      color: #fff;
+      font-size: 56px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .hero-lead {
+      max-width: 680px;
+      margin-bottom: 18px;
+      color: #edf7f3;
+      font-size: 21px;
+      line-height: 1.55;
+    }
+
+    .hero-copy {
+      max-width: 700px;
+      color: #d9e9e3;
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      background: var(--gold);
+      color: #15130c;
+      font-weight: 800;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.38);
+      box-shadow: none;
+    }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .quick-facts div {
+      padding: 20px;
+      background: #fff;
+    }
+
+    .quick-facts strong {
+      display: block;
+      color: var(--brand);
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .quick-facts span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 76px 0;
+      content-visibility: auto;
+      contain-intrinsic-size: 720px;
+    }
+
+    .section.alt {
+      background: #fff;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-head.center {
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center;
+    }
+
+    .section-kicker {
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      color: var(--ink);
+      font-size: 38px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      color: var(--ink);
+      font-size: 20px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .values-grid,
+    .services-grid,
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .faq-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card,
+    .faq-item,
+    .step,
+    .price-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .icon-label {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .card p,
+    .faq-item p,
+    .step p {
+      margin-bottom: 0;
+      color: #475b52;
+    }
+
+    .remote-band {
+      background: var(--brand-dark);
+      color: #fff;
+    }
+
+    .remote-layout,
+    .split-layout,
+    .contact-layout,
+    .digital-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 38px;
+      align-items: center;
+    }
+
+    .remote-band h2,
+    .contact-band h2 {
+      color: #fff;
+    }
+
+    .remote-band p,
+    .contact-band p {
+      color: #dceae5;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .check-list li {
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.10);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      padding: 22px;
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .text-panel {
+      color: #40544b;
+    }
+
+    .text-panel ul {
+      margin: 16px 0 0;
+      padding-left: 20px;
+    }
+
+    .text-panel li + li {
+      margin-top: 8px;
+    }
+
+    .phone-mockup {
+      width: min(100%, 330px);
+      margin: 0 auto;
+      padding: 16px;
+      border-radius: 26px;
+      background: #10231c;
+      box-shadow: 0 24px 60px rgba(17, 35, 28, 0.24);
+    }
+
+    .phone-screen {
+      min-height: 520px;
+      padding: 20px;
+      border-radius: 18px;
+      background: #f7faf7;
+    }
+
+    .phone-screen h3 {
+      margin-bottom: 18px;
+      color: var(--brand);
+    }
+
+    .doc-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: #31473d;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .doc-line span:last-child {
+      color: var(--gold);
+    }
+
+    .price-card {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 42px;
+      text-align: center;
+    }
+
+    .price {
+      margin: 14px 0;
+      color: var(--brand);
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1.05;
+    }
+
+    .price-card p {
+      max-width: 680px;
+      margin-right: auto;
+      margin-left: auto;
+      color: #4a5d55;
+    }
+
+    .faq-item {
+      padding: 22px;
+    }
+
+    .seo-copy {
+      max-width: 900px;
+      color: #40544b;
+    }
+
+    .seo-copy h3 {
+      margin-top: 28px;
+    }
+
+    .contact-band {
+      background: #0f211a;
+      color: #fff;
+    }
+
+    .contact-card {
+      padding: 26px;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--text);
+    }
+
+    .contact-card a {
+      display: block;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--brand);
+      font-weight: 800;
+      word-break: break-word;
+    }
+
+    .contact-card a:last-child {
+      border-bottom: 0;
+    }
+
+    .floating-actions {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 60;
+      display: grid;
+      gap: 10px;
+    }
+
+    .floating-actions a {
+      padding: 12px 16px;
+      border-radius: 6px;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+      text-align: center;
+    }
+
+    .site-footer {
+      padding: 28px 0;
+      color: var(--muted);
+      text-align: center;
+      background: #fff;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 1040px) {
+      .nav-links {
+        display: none;
+      }
+
+      .values-grid,
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .remote-layout,
+      .split-layout,
+      .contact-layout,
+      .digital-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 28px, var(--container));
+      }
+
+      .navbar {
+        min-height: 68px;
+      }
+
+      .brand-mark {
+        width: 46px;
+        height: 46px;
+        font-size: 16px;
+      }
+
+      .brand span {
+        font-size: 14px;
+      }
+
+      .brand small,
+      .header-phone {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero::after {
+        background: linear-gradient(90deg, rgba(10, 44, 34, 0.92), rgba(10, 44, 34, 0.76));
+      }
+
+      .hero-content {
+        padding: 68px 0 54px;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      .hero-lead {
+        font-size: 18px;
+      }
+
+      .actions,
+      .btn {
+        width: 100%;
+      }
+
+      .quick-facts {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .values-grid,
+      .services-grid,
+      .faq-grid,
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .price-card {
+        padding: 28px 18px;
+      }
+
+      .price {
+        font-size: 38px;
+      }
+
+      .phone-screen {
+        min-height: 430px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-bottom: 0;
+      }
+
+      .floating-actions {
+        position: static;
+        width: min(100% - 28px, var(--container));
+        margin: 24px auto;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        background: transparent;
+        border-top: 0;
+      }
+
+      .floating-actions a {
+        border-radius: 6px;
+        box-shadow: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <a class="skip-link" href="#main">Към съдържанието</a>
 
-<header>
-  <div class="navbar">
-    <div class="logo">
-      <div class="logo-mark">КПД</div>
-      <span>
-        АКТИВ БУРГАС ЕООД
-        <small>Коректност • Прецизност • Доверие</small>
-      </span>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="#top" aria-label="АКТИВ БУРГАС ЕООД">
+        <span class="brand-mark" aria-hidden="true">КПД</span>
+        <span>
+          АКТИВ БУРГАС ЕООД
+          <small>Коректност • Прецизност • Доверие</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Основна навигация">
+        <a href="#services">Услуги</a>
+        <a href="#remote">Дистанционно</a>
+        <a href="#steps">Процес</a>
+        <a href="#price">Цени</a>
+        <a href="#faq">Въпроси</a>
+        <a href="#contact">Контакт</a>
+      </nav>
+      <a class="header-phone" href="tel:+359885507507">0885 507 507</a>
     </div>
+  </header>
 
-    <nav>
-      <a href="#services">Услуги</a>
-      <a href="#remote">Дистанционно</a>
-      <a href="#price">Цени</a>
-      <a href="#app">Приложение</a>
-      <a href="#contact">Контакт</a>
-    </nav>
-  </div>
-</header>
+  <main id="main">
+    <section class="hero" id="top" aria-label="АКТИВ БУРГАС ЕООД">
+      <img
+        class="hero-image"
+        src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=70"
+        srcset="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=70 900w, https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=70 1400w, https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=2000&q=70 2000w"
+        sizes="100vw"
+        width="1600"
+        height="900"
+        alt=""
+        loading="eager"
+        decoding="async"
+        fetchpriority="high">
+      <div class="container hero-content">
+        <div class="eyebrow">Счетоводни услуги онлайн и на абонамент</div>
+        <h1>АКТИВ БУРГАС ЕООД</h1>
+        <p class="hero-lead">Счетоводно обслужване за фирми, свободни професии и малък бизнес в Бургас, София, Русе и цяла България.</p>
+        <p class="hero-copy">Работим подредено с документи, срокове, ДДС, ТРЗ и годишни отчети. Целта е клиентът да получава ясна информация навреме, без излишно ходене по офиси.</p>
+        <div class="actions">
+          <a class="btn" href="tel:+359885507507">Обадете се</a>
+          <a class="btn secondary" href="mailto:tgs@gbg.bg">Изпратете запитване</a>
+        </div>
+      </div>
+    </section>
 
-<div class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="badge">Счетоводни услуги за цялата страна</div>
-
-      <h1>Счетоводство без разстояние.</h1>
-
-      <p><strong>Навреме. Точно. Под контрол.</strong></p>
-
-      <p>
-        АКТИВ БУРГАС ЕООД предлага професионално счетоводно обслужване,
-        ТРЗ, ДДС дневници, годишни отчети и данъчни консултации.
-      </p>
-
-      <p>
-        Работим дистанционно с клиенти в Бургас, Русе, София
-        и всяка точка на България чрез собствена система за бърза обработка
-        на документи.
-      </p>
-
-      <div class="buttons">
-        <a class="btn" href="#contact">Заяви консултация</a>
-        <a class="btn alt" href="#price">Абонамент от 100 евро</a>
+    <div class="quick-facts" aria-label="Основни предимства">
+      <div>
+        <strong>от 100 евро</strong>
+        <span>месечен абонамент</span>
+      </div>
+      <div>
+        <strong>ДДС • ТРЗ • ГФО</strong>
+        <span>пълно обслужване</span>
+      </div>
+      <div>
+        <strong>100% онлайн</strong>
+        <span>документи и комуникация</span>
+      </div>
+      <div>
+        <strong>цяла България</strong>
+        <span>Бургас, София, Русе и други градове</span>
       </div>
     </div>
 
-    <div class="visual-card">
-      <h2>Вашият успех е нашата сметка</h2>
-      <p>Подредени документи, ясни срокове и навременно осчетоводяване.</p>
-
-      <div class="mock-chart">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
+    <section class="section" aria-labelledby="values-title">
+      <div class="container">
+        <div class="section-head center">
+          <div class="section-kicker">КПД</div>
+          <h2 id="values-title">Стандартът, по който работим</h2>
+          <p>Коректност, прецизност и доверие. Парите днес не са парите утре, затова счетоводството трябва да бъде навременно и проверимо.</p>
+        </div>
+        <div class="values-grid">
+          <article class="card">
+            <span class="icon-label" aria-hidden="true">К</span>
+            <h3>Коректност</h3>
+            <p>Ясна комуникация, конкретни срокове и отговорно отношение към всеки документ и всяко запитване.</p>
+          </article>
+          <article class="card">
+            <span class="icon-label" aria-hidden="true">П</span>
+            <h3>Прецизност</h3>
+            <p>Внимателна обработка, последователни проверки и стремеж към точна счетоводна информация.</p>
+          </article>
+          <article class="card">
+            <span class="icon-label" aria-hidden="true">Д</span>
+            <h3>Доверие</h3>
+            <p>Дългосрочно партньорство, спокойствие за собственика и разбираема отчетност.</p>
+          </article>
+          <article class="card">
+            <span class="icon-label" aria-hidden="true">Ф</span>
+            <h3>Финансова мисъл</h3>
+            <p>Всяко счетоводно решение има ефект във времето. Работим с поглед към утрешния резултат.</p>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <div class="kpi">
-        <div>100% дистанционно</div>
-        <div>24/7 достъп</div>
-        <div>Цяла България</div>
-        <div>Навременни справки</div>
+    <section class="section alt" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Услуги</div>
+          <h2 id="services-title">Счетоводно обслужване за малък и среден бизнес</h2>
+          <p>Покриваме текущата работа, отчетността, данъчните срокове и комуникацията с институции.</p>
+        </div>
+        <div class="services-grid">
+          <article class="card">
+            <span class="icon-label" aria-hidden="true">СЧ</span>
+            <h3>Текущо счетоводство</h3>
+            <p>Осчетоводяване на фактури, банкови операции, касови документи, разчети, справки и текущ контрол.</p>
+          </article>
+          <article class="card">
+            <span class="icon-label" aria-hidden="true">ДДС</span>
+            <h3>ДДС дневници</h3>
+            <p>Дневници покупки и продажби, справка-декларация по ДДС, проверки, контрол и подаване към НАП.</p>
+          </article>
+          <article class="card">
+            <span class="icon-label" aria-hidden="true">ТРЗ</span>
+            <h3>ТРЗ и заплати</h3>
+            <p>Трудови договори, ведомости, фишове, осигуровки, декларации, болнични, отпуски и справки за персонала.</p>
+          </article>
+          <article class="card">
+            <span class="icon-label" aria-hidden="true">ГФО</span>
+            <h3>Годишно приключване</h3>
+            <p>Годишни финансови отчети, данъчни декларации, публикуване и подготовка на годишна отчетност.</p>
+          </article>
+          <article class="card">
+            <span class="icon-label" aria-hidden="true">НОВ</span>
+            <h3>Нови фирми</h3>
+            <p>Организация на счетоводството от самото начало, избор на режим, ДДС, осигуряване и документооборот.</p>
+          </article>
+          <article class="card">
+            <span class="icon-label" aria-hidden="true">ФАК</span>
+            <h3>Фактуриране</h3>
+            <p>Подпомагане при издаване, получаване, архивиране и движение на фактури и първични документи.</p>
+          </article>
+          <article class="card">
+            <span class="icon-label" aria-hidden="true">ДАН</span>
+            <h3>Данъчни консултации</h3>
+            <p>Практични насоки по текущи данъчни казуси, документи, срокове и организация на отчетността.</p>
+          </article>
+          <article class="card">
+            <span class="icon-label" aria-hidden="true">АРХ</span>
+            <h3>Архив и справки</h3>
+            <p>Подреждане на документи по периоди, справки за задължения, плащания, обороти и контролни данни.</p>
+          </article>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+    </section>
 
-<section>
-  <div class="section-title">
-    <h2>КПД</h2>
-    <p>Коректност, Прецизност, Доверие</p>
-  </div>
-
-  <div class="cards">
-    <div class="card">
-      <div class="icon">✅</div>
-      <h3>Коректност</h3>
-      <p>Ясни правила, точна комуникация и отговорно отношение към всеки клиент.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🎯</div>
-      <h3>Прецизност</h3>
-      <p>Документите се обработват внимателно, навреме и по подредена система.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🤝</div>
-      <h3>Доверие</h3>
-      <p>Дългосрочно партньорство, спокойствие и контрол върху счетоводството.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">💶</div>
-      <h3>Финансова мисъл</h3>
-      <p><strong>„Парите днес не са парите утре.“</strong></p>
-    </div>
-  </div>
-</section>
-
-<section id="services">
-  <div class="section-title">
-    <h2>Нашите услуги</h2>
-    <p>Пълно счетоводно обслужване за малък и среден бизнес</p>
-  </div>
-
-  <div class="cards">
-    <div class="card">
-      <div class="icon">📄</div>
-      <h3>Счетоводно обслужване</h3>
-      <p>Текущо осчетоводяване, регистри, справки, оборотни ведомости и контрол на документите.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">👥</div>
-      <h3>ТРЗ и заплати</h3>
-      <p>Трудови договори, ведомости, осигуровки, декларации и справки за персонала.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">📊</div>
-      <h3>ДДС дневници</h3>
-      <p>Покупки, продажби, проверки, подготовка и подаване към НАП.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">📈</div>
-      <h3>Годишни отчети</h3>
-      <p>ГФО, данъчни декларации, справки и публикуване според изискванията.</p>
-    </div>
-  </div>
-</section>
-
-<section id="remote">
-  <div class="remote">
-    <div>
-      <h2>Дистанционно обслужване за цяла България</h2>
-      <p>
-        Ние сме си разработили система за дистанционно обслужване,
-        която ни позволява да реагираме с еднаква бързина към клиенти
-        в Бургас, Русе, София и във всяка точка на България.
-      </p>
-      <p>
-        Целта е документите да се движат бързо, да няма излишно чакане
-        и осчетоводяването да става навреме.
-      </p>
-    </div>
-
-    <div class="checks">
-      <div>✓ Качване на документи онлайн</div>
-      <div>✓ Издаване на фактури през приложение</div>
-      <div>✓ Бърза реакция при въпроси</div>
-      <div>✓ Навременно осчетоводяване</div>
-      <div>✓ Справки и контрол от разстояние</div>
-    </div>
-  </div>
-</section>
-
-<section id="price">
-  <div class="price-box">
-    <div class="section-title">
-      <h2>Месечен абонамент</h2>
-      <p>Ясна стартова цена за дистанционно счетоводно обслужване</p>
-    </div>
-
-    <div class="price">от 100 евро</div>
-
-    <p>
-      Крайната цена се определя според броя документи, персонал,
-      ДДС регистрация и спецификата на дейността.
-    </p>
-
-    <div class="buttons" style="justify-content:center">
-      <a class="btn" href="#contact">Поискай оферта</a>
-    </div>
-  </div>
-</section>
-
-<section id="app">
-  <div class="section-title">
-    <h2>Приложение за фактури и документи</h2>
-    <p>По-бърза връзка между клиента и счетоводството</p>
-  </div>
-
-  <div class="app-box">
-    <div class="phone">
-      <div class="phone-screen">
-        <h3>АКТИВ Документи</h3>
-        <div class="invoice">📸 Снимай фактура</div>
-        <div class="invoice">⬆️ Качи документ</div>
-        <div class="invoice">🧾 Издай фактура</div>
-        <div class="invoice">📊 Виж справка</div>
-        <div class="invoice">✅ Изпрати към счетоводство</div>
+    <section class="section remote-band" id="remote" aria-labelledby="remote-title">
+      <div class="container remote-layout">
+        <div>
+          <div class="section-kicker">Дистанционно обслужване</div>
+          <h2 id="remote-title">Документите стигат навреме, независимо къде е клиентът</h2>
+          <p>АКТИВ БУРГАС ЕООД работи с клиенти в Бургас, София, Русе и други населени места. Разстоянието не е пречка, когато процесът за документи е ясен, а обратната връзка е навременна.</p>
+          <p>Фактури, договори, банкови извлечения и други материали могат да се изпращат онлайн, а обработката се проследява по периоди.</p>
+        </div>
+        <ul class="check-list">
+          <li>Подредено изпращане на документи</li>
+          <li>Навременно осчетоводяване</li>
+          <li>Ясни справки и контрол</li>
+          <li>Бърза реакция от всяка точка на България</li>
+        </ul>
       </div>
-    </div>
+    </section>
 
-    <div class="cards" style="grid-template-columns:1fr 1fr">
-      <div class="card">
-        <div class="icon">📱</div>
-        <h3>С телефона</h3>
-        <p>Снимате фактура или документ и го изпращате директно за обработка.</p>
+    <section class="section" id="steps" aria-labelledby="steps-title">
+      <div class="container">
+        <div class="section-head center">
+          <div class="section-kicker">Процес</div>
+          <h2 id="steps-title">Как работим дистанционно</h2>
+          <p>Процесът е направен така, че клиентът да не губи време в излишна счетоводна администрация.</p>
+        </div>
+        <div class="steps-grid">
+          <article class="step">
+            <span class="step-number">1</span>
+            <h3>Изпращате</h3>
+            <p>Качвате или снимате фактури, договори, банкови документи и други счетоводни материали.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">2</span>
+            <h3>Проверяваме</h3>
+            <p>Преглеждаме документите, уточняваме липси и подреждаме информацията по периоди.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">3</span>
+            <h3>Осчетоводяваме</h3>
+            <p>Обработваме документите, подготвяме дневници, ведомости и нужните справки.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">4</span>
+            <h3>Подаваме</h3>
+            <p>Подготвяме и подаваме ДДС, ТРЗ, декларации и други задължения към институции.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">5</span>
+            <h3>Информираме</h3>
+            <p>Получавате ясна обратна връзка, справки и информация за плащания и срокове.</p>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <div class="card">
-        <div class="icon">🧾</div>
-        <h3>Фактуриране</h3>
-        <p>Възможност за издаване на фактури и организиране на клиентски документи.</p>
+    <section class="section alt" aria-labelledby="fit-title">
+      <div class="container split-layout">
+        <div class="text-panel">
+          <div class="section-kicker">Подходящо за</div>
+          <h2 id="fit-title">Фирми, които искат ред и бърза реакция</h2>
+          <p>Дистанционното счетоводно обслужване е подходящо за онлайн магазини, търговски дружества, услуги, консултанти, свободни професии, малки фирми и стартиращ бизнес.</p>
+          <ul>
+            <li>малък и среден документооборот;</li>
+            <li>ДДС регистрирани лица;</li>
+            <li>работодатели с персонал;</li>
+            <li>онлайн бизнеси и услуги;</li>
+            <li>клиенти, които искат ред и контрол.</li>
+          </ul>
+        </div>
+        <div class="text-panel">
+          <div class="section-kicker">Полза за клиента</div>
+          <h2>По-малко загубено време, повече предвидимост</h2>
+          <p>Когато документите и сроковете се движат през ясен процес, счетоводството не е просто задължение, а инструмент за контрол на бизнеса.</p>
+          <ul>
+            <li>навременно подаване към НАП;</li>
+            <li>по-добър архив;</li>
+            <li>по-лесна комуникация;</li>
+            <li>по-малък риск от пропуски;</li>
+            <li>възможност за работа от цялата страна.</li>
+          </ul>
+        </div>
       </div>
+    </section>
 
-      <div class="card">
-        <div class="icon">🔐</div>
-        <h3>Подреден архив</h3>
-        <p>Документите се събират по периоди и се обработват навреме.</p>
+    <section class="section" id="app" aria-labelledby="app-title">
+      <div class="container digital-layout">
+        <div class="phone-mockup" aria-label="Примерен екран за документи">
+          <div class="phone-screen">
+            <h3>АКТИВ Документи</h3>
+            <div class="doc-line"><span>Снимка на фактура</span><span>готово</span></div>
+            <div class="doc-line"><span>Качен документ</span><span>нов</span></div>
+            <div class="doc-line"><span>Издадена фактура</span><span>архив</span></div>
+            <div class="doc-line"><span>Справка за период</span><span>видяна</span></div>
+            <div class="doc-line"><span>Изпратено към счетоводство</span><span>OK</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="section-kicker">Дигитален канал</div>
+          <h2 id="app-title">Документи, фактури и справки без носене на хартия</h2>
+          <p>Клиентът може да снима фактура, да изпрати файл, да следи какво е предадено и да пази по-добър архив. Така комуникацията става по-бърза, а документите не се губят между имейли, папки и хартиени копия.</p>
+          <div class="actions">
+            <a class="btn" href="mailto:tgs@gbg.bg">Попитайте за дистанционно обслужване</a>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="card">
-        <div class="icon">⚡</div>
-        <h3>Бърза реакция</h3>
-        <p>По-малко губене на време и по-бърза комуникация със счетоводството.</p>
+    <section class="section alt" id="price" aria-labelledby="price-title">
+      <div class="container">
+        <div class="price-card">
+          <div class="section-kicker">Абонамент</div>
+          <h2 id="price-title">Месечно счетоводно обслужване</h2>
+          <div class="price">от 100 евро</div>
+          <p>Крайната цена се определя според броя документи, регистрацията по ДДС, наличието на персонал, вида дейност и обема на текущата работа.</p>
+          <div class="actions" style="justify-content: center;">
+            <a class="btn" href="mailto:tgs@gbg.bg">Поискайте индивидуална оферта</a>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-head center">
+          <div class="section-kicker">Въпроси</div>
+          <h2 id="faq-title">Често задавани въпроси</h2>
+          <p>Кратки отговори за дистанционното счетоводно обслужване.</p>
+        </div>
+        <div class="faq-grid">
+          <article class="faq-item">
+            <h3>Може ли фирма от София да се обслужва от Бургас?</h3>
+            <p>Да. При дистанционната система местоположението няма решаващо значение. Документите се изпращат онлайн, а комуникацията може да бъде по телефон, email или приложение.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Как се изпращат фактурите?</h3>
+            <p>Може да се качват като файлове, да се снимат с телефон или да се изпращат по електронен път. Целта е документите да стигат бързо и подредено.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Какво включва абонаментът?</h3>
+            <p>Обичайно включва текущо счетоводно обслужване, обработка на документи, справки и комуникация. Допълнителните услуги се уточняват според дейността.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Работите ли с ДДС регистрирани фирми?</h3>
+            <p>Да. Подготвят се ДДС дневници покупки и продажби, справка-декларация по ДДС и нужните контролни проверки.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Може ли да поемете ТРЗ?</h3>
+            <p>Да. Обслужването може да включва трудови договори, ведомости, осигуровки, декларации и справки за персонала.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Има ли значение къде е клиентът?</h3>
+            <p>Не. Обслужването е организирано за цяла България: Бургас, София, Русе и други населени места.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" aria-labelledby="seo-title">
+      <div class="container seo-copy">
+        <h2 id="seo-title">Счетоводни услуги Бургас, София, Русе и цяла България</h2>
+        <p><strong>АКТИВ БУРГАС ЕООД</strong> предлага счетоводни услуги и дистанционно счетоводно обслужване за фирми в Бургас, София, Русе и други населени места в България. Обслужването включва текущо счетоводство, ДДС дневници, справки към НАП, ТРЗ и заплати, годишни финансови отчети, данъчни декларации и текущи консултации.</p>
+        <p>Дистанционното счетоводство е удобен вариант за бизнеси, които не искат да губят време във физическо предаване на документи. Чрез онлайн изпращане, дигитален архив и ясна комуникация може да се постигне навременно осчетоводяване независимо от местоположението на клиента.</p>
+        <h3>Защо онлайн счетоводство?</h3>
+        <p>Онлайн счетоводното обслужване позволява по-бърза реакция, по-добра проследимост и по-добър контрол върху документите. В практиката това означава по-малко забавяне, по-малък риск от пропуски и по-лесна подготовка на справки, ДДС дневници, ведомости и годишни отчети.</p>
+        <h3>Счетоводна къща с фокус върху сроковете</h3>
+        <p>За всеки бизнес сроковете към НАП, НОИ, НСИ и другите институции са важни. Затова организацията на счетоводството трябва да бъде ясна, навременна и проверима. Нашият подход е да създадем ред в документацията и да превърнем счетоводството в надежден процес.</p>
+      </div>
+    </section>
+
+    <section class="section contact-band" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-layout">
+        <div>
+          <div class="section-kicker">Контакт</div>
+          <h2 id="contact-title">Свържете се с АКТИВ БУРГАС ЕООД</h2>
+          <p>Пишете или се обадете за счетоводно обслужване, дистанционна организация на документи, ТРЗ, ДДС, ГФО или индивидуална оферта.</p>
+        </div>
+        <address class="contact-card">
+          <h3>АКТИВ БУРГАС ЕООД</h3>
+          <a href="tel:+359885507507">Телефон: 0885 507 507</a>
+          <a href="mailto:tgs@gbg.bg">Email: tgs@gbg.bg</a>
+          <a href="https://radena76.github.io/RADENA/">Сайт: radena76.github.io/RADENA</a>
+          <a href="#remote">Обслужване: цяла България</a>
+        </address>
+      </div>
+    </section>
+  </main>
+
+  <div class="floating-actions" aria-label="Бърз контакт">
+    <a href="tel:+359885507507">Обадете се</a>
+    <a href="mailto:tgs@gbg.bg">Email</a>
   </div>
-</section>
 
-<section id="contact">
-  <div class="contact">
-    <div>
-      <h2>Свържете се с нас</h2>
-      <p>
-        АКТИВ БУРГАС ЕООД предлага счетоводни услуги за клиенти
-        в цяла България. Изпратете запитване за абонаментно обслужване,
-        консултация или дистанционна организация на документи.
-      </p>
-    </div>
-
-    <div class="contact-card">
-      <h3>Контакти</h3>
-      <a href="tel:+359885507507">Телефон: 0885 507 507</a>
-      <a href="mailto:office@aktivburgas.bg">Email: office@aktivburgas.bg</a>
-      <a href="#">Бургас • София • Русе • Цяла България</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  © АКТИВ БУРГАС ЕООД • КПД — Коректност, Прецизност, Доверие
-</footer>
-
+  <footer class="site-footer">
+    <div class="container">© АКТИВ БУРГАС ЕООД • КПД: Коректност, Прецизност, Доверие • Парите днес не са парите утре.</div>
+  </footer>
 </body>
 </html>
